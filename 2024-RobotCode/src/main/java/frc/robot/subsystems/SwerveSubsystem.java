@@ -61,9 +61,7 @@ public class SwerveSubsystem extends SubsystemBase {
               }); 
 
     public SwerveSubsystem() {
-        
-        //resetAllWheels();
-        
+
         new Thread(() -> {
             try {
                 Thread.sleep(1000);
