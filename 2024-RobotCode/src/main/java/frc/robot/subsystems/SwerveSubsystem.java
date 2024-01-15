@@ -146,15 +146,4 @@ public class SwerveSubsystem extends SubsystemBase {
         backLeft.setDesiredState(desiredStates[2]);
         backRight.setDesiredState(desiredStates[3]);
     }
-    
-    //Autohome code, hopefully we can get this to work
-    
-    
-    // public void resetAllWheels() {
-    //     frontLeft.resetEncoders
-    //     frontRight.setEncoderAngle(frontRight.getAbsoluteEncoderRad());
-    //     backLeft.setEncoderAngle(backLeft.getAbsoluteEncoderRad());
-    //     backRight.setEncoderAngle(backRight.getAbsoluteEncoderRad());
-    // }
-    
 }
