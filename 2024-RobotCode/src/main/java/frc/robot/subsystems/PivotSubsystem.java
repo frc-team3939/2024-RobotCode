@@ -23,7 +23,6 @@ public class PivotSubsystem extends SubsystemBase {
     pivotmotor.setIdleMode(IdleMode.kBrake);
     
     encoder = pivotmotor.getEncoder();
-    SmartDashboard.putNumber("Pivot Target", 0);
   }
 
   public void zeroPivotEncoders() {
