@@ -37,19 +37,19 @@ public class ShooterSubsystem extends SubsystemBase {
     pid.setP(1);
   }
 
-  public void shooterSpin(double sspeed) {
+  public void spinShooter(double sspeed) {
     shootermotor.set(sspeed);
   }
   
-  public void shooterStop() {
+  public void stopShooter() {
     shootermotor.set(0);
   }
 
-  public void feederSpin(double fspeed) {
+  public void spinFeeder(double fspeed) {
     feedermotor.set(fspeed);
   }
 
-  public void feederStop() {
+  public void stopFeeder() {
     feedermotor.set(0);
   }
 

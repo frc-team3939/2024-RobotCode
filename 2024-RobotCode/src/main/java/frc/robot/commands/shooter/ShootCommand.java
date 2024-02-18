@@ -24,7 +24,7 @@ public class ShootCommand extends Command {
   @Override
   public void initialize() {
     i = 0;
-    shootersubsystem.shooterSpin(ss);
+    shootersubsystem.spinShooter(ss);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -32,17 +32,17 @@ public class ShootCommand extends Command {
   public void execute() {
     i = i + 1;
     //ss = 70;//(SmartDashboard.getNumber("Speed", 0)); //Delete when speed is decided on
-    shootersubsystem.shooterSpin(ss);
+    shootersubsystem.spinShooter(ss);
     if(i > 75){
-      shootersubsystem.feederSpin(0.5);
+      shootersubsystem.spinFeeder(0.5);
     } 
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shootersubsystem.shooterStop();
-    shootersubsystem.feederStop();
+    shootersubsystem.stopShooter();
+    shootersubsystem.stopFeeder();
   }
 
   // Returns true when the command should end.
