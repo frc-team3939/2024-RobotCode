@@ -15,34 +15,49 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ShooterSubsystem extends SubsystemBase {
 
-  private final CANSparkMax shootermotor;
+  private final CANSparkMax Yshootermotor;
+  private final CANSparkMax Sshootermotor;
   private final CANSparkMax feedermotor;
   
-  private final RelativeEncoder shooterencoder;
+  private final RelativeEncoder Yshooterencoder;
+  private final RelativeEncoder Sshooterencoder;
   private final RelativeEncoder feederencoder;
 
-  private final SparkPIDController pid;
+  private final SparkPIDController Ypid;
+  private final SparkPIDController Spid;
 
   public ShooterSubsystem() {
-    shootermotor = new CANSparkMax(36, MotorType.kBrushless);
-    shootermotor.setIdleMode(IdleMode.kCoast);
+    Yshootermotor = new CANSparkMax(53, MotorType.kBrushless);
+    Yshootermotor.setIdleMode(IdleMode.kCoast);
 
-    feedermotor = new CANSparkMax(36, MotorType.kBrushless);
+    Sshootermotor = new CANSparkMax(57, MotorType.kBrushless);
+    Sshootermotor.setIdleMode(IdleMode.kCoast);
+
+    feedermotor = new CANSparkMax(58, MotorType.kBrushless);
     feedermotor.setIdleMode(IdleMode.kBrake);
     
-    shooterencoder = shootermotor.getEncoder();
+    Yshootermotor.enableVoltageCompensation(11.5);
+    Sshootermotor.enableVoltageCompensation(11.5);
+
+    Yshooterencoder = Yshootermotor.getEncoder();
+    Sshooterencoder = Sshootermotor.getEncoder();
     feederencoder = feedermotor.getEncoder();
 
-    pid = shootermotor.getPIDController();
-    pid.setP(1);
+    Ypid = Yshootermotor.getPIDController();
+    Ypid.setP(1);
+
+    Spid = Sshootermotor.getPIDController();
+    Spid.setP(1);
   }
 
   public void spinShooter(double sspeed) {
-    shootermotor.set(sspeed);
+    Yshootermotor.set(sspeed);
+    Sshootermotor.set(-sspeed);
   }
   
   public void stopShooter() {
-    shootermotor.set(0);
+    Yshootermotor.set(0);
+    Sshootermotor.set(0);
   }
 
   public void spinFeeder(double fspeed) {
@@ -53,8 +68,12 @@ public class ShooterSubsystem extends SubsystemBase {
     feedermotor.set(0);
   }
 
-  public double getShooterEncoder() {
-    return shooterencoder.getPosition();
+  public double getYellowShooterEncoder() {
+    return Yshooterencoder.getPosition();
+  }
+
+  public double getSilverShooterEncoder() {
+    return Sshooterencoder.getPosition();
   }
 
   public double getFeederEncoder() {
@@ -63,7 +82,8 @@ public class ShooterSubsystem extends SubsystemBase {
   
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Shooter Encoder Position", getShooterEncoder());
-    SmartDashboard.putNumber("Feeder Encoder Position", getFeederEncoder());
+    SmartDashboard.putNumber("Yellow Shooter Encoder", getYellowShooterEncoder());
+    SmartDashboard.putNumber("Silver Shooter Encoder", getSilverShooterEncoder());
+    SmartDashboard.putNumber("Feeder Encoder", getFeederEncoder());
   }
 }

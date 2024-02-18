@@ -19,7 +19,7 @@ public class PivotSubsystem extends SubsystemBase {
   private final RelativeEncoder encoder;
 
   public PivotSubsystem() {
-    pivotmotor = new CANSparkMax(36, MotorType.kBrushless);
+    pivotmotor = new CANSparkMax(51, MotorType.kBrushless);
     pivotmotor.setIdleMode(IdleMode.kBrake);
     
     encoder = pivotmotor.getEncoder();

@@ -34,14 +34,14 @@ public final class Constants {
 
         //Plug into any SparkMax with a USB-C cable and use the utility on the desktop to check the port IDs of each motor 
         public static final int kFrontLeftDriveMotorPort = 23;   //FL
-        public static final int kBackLeftDriveMotorPort = 28;    //BL
-        public static final int kFrontRightDriveMotorPort = 41;  //FR
-        public static final int kBackRightDriveMotorPort = 27;   //BR
+        public static final int kBackLeftDriveMotorPort = 43;    //BL
+        public static final int kFrontRightDriveMotorPort = 27;  //FR
+        public static final int kBackRightDriveMotorPort = 41;   //BR
 
-        public static final int kFrontLeftTurningMotorPort = 43;     //FL
+        public static final int kFrontLeftTurningMotorPort = 28;     //FL
         public static final int kBackLeftTurningMotorPort = 24;      //BL
-        public static final int kFrontRightTurningMotorPort = 40;    //FR
-        public static final int kBackRightTurningMotorPort = 42;     //BR
+        public static final int kFrontRightTurningMotorPort = 42;    //FR
+        public static final int kBackRightTurningMotorPort = 40;     //BR
 
         public static final boolean kFrontLeftTurningEncoderReversed = true;
         public static final boolean kBackLeftTurningEncoderReversed = true;

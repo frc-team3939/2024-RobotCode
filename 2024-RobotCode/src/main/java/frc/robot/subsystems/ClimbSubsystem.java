@@ -23,10 +23,10 @@ public class ClimbSubsystem extends SubsystemBase {
     public ClimbSubsystem() {
 
         //Change ID values when robot is wired
-        climbmotorLeft = new CANSparkMax(36, MotorType.kBrushless);
+        climbmotorLeft = new CANSparkMax(54, MotorType.kBrushless);
         climbmotorLeft.setIdleMode(IdleMode.kBrake);
 
-        climbmotorRight = new CANSparkMax(36, MotorType.kBrushless);
+        climbmotorRight = new CANSparkMax(55, MotorType.kBrushless);
         climbmotorRight.setIdleMode(IdleMode.kBrake);
 
         climbencoderLeft = climbmotorLeft.getEncoder();
@@ -40,7 +40,7 @@ public class ClimbSubsystem extends SubsystemBase {
 
     public void climberDown(double speed) {
         climbmotorLeft.set(speed);
-        climbmotorRight.set(speed);
+        climbmotorRight.set(-speed);
     }
 
     public void LeftclimberDown(double speed) {
@@ -48,7 +48,7 @@ public class ClimbSubsystem extends SubsystemBase {
     }
 
     public void RightclimberDown(double speed) {
-        climbmotorRight.set(speed);
+        climbmotorRight.set(-speed);
     }
 
 
