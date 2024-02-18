@@ -27,16 +27,19 @@ import edu.wpi.first.wpilibj.PS4Controller.Axis;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.PivotToPositionPID;
 import frc.robot.commands.SpinIntake;
 import frc.robot.commands.SwerveJoystickCmd;
-import frc.robot.commands.ZeroHeading;
+import frc.robot.commands.ResetHeading;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.PivotSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 
 public class RobotContainer {
  
     private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
     private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+    private final PivotSubsystem pivotSubsystem = new PivotSubsystem();
 
     private final Joystick driverJoytick = new Joystick(OIConstants.kDriverControllerPort);
     private final PS4Controller driverPS4Controller = new PS4Controller(OIConstants.kDriverControllerPort);
@@ -67,10 +70,11 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
         //button1.whileTrue(new SpinIntake(intakeSubsystem, 1));
-        button1.onTrue(new ZeroHeading(swerveSubsystem));
+        button1.onTrue(new ResetHeading(swerveSubsystem));
         button5.whileTrue(new SpinIntake(intakeSubsystem, 0.33));
         button6.whileTrue(new SpinIntake(intakeSubsystem, -0.33));
-        new JoystickButton(driverPS4Controller, PS4Controller.Button.kCross.value).toggleOnTrue(new ZeroHeading(swerveSubsystem));
+        button3.onTrue(new PivotToPositionPID(pivotSubsystem, 0));
+        new JoystickButton(driverPS4Controller, PS4Controller.Button.kCross.value).toggleOnTrue(new ResetHeading(swerveSubsystem));
     }
 
     public Command getAutonomousCommand() {

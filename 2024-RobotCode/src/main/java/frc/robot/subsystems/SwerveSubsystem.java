@@ -65,13 +65,13 @@ public class SwerveSubsystem extends SubsystemBase {
         new Thread(() -> {
             try {
                 Thread.sleep(1000);
-                zeroHeading();
+                resetHeading();
             } catch (Exception e) {
             }
         }).start();
     }
 
-    public void zeroHeading() {
+    public void resetHeading() {
         gyro.reset();
     }
 
