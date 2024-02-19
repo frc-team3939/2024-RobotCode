@@ -72,7 +72,8 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
         //button1.whileTrue(new SpinIntake(intakeSubsystem, 1));
-        button1.onTrue(new ResetHeading(swerveSubsystem));
+        // button1.onTrue(new ResetHeading(swerveSubsystem));
+        button1.onTrue(new PivotToPositionPID(pivotSubsystem, -0.4));
         button5.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.33));
         button6.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, -0.33));
         button3.onTrue(new PivotToPositionPID(pivotSubsystem, 0));

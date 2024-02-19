@@ -18,7 +18,7 @@ public class ZeroPivotEncoders extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    pivotsubsystem.zeroPivotEncoders();
+    pivotsubsystem.moveArmPosition(-0.4);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
