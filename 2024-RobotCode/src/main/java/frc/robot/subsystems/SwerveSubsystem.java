@@ -99,6 +99,13 @@ public class SwerveSubsystem extends SubsystemBase {
             pose);
     }
 
+    public void resetEncoders() {
+        frontLeft.resetEncoders();
+        frontRight.resetEncoders();
+        backLeft.resetEncoders();
+        backRight.resetEncoders();
+    }
+
     @Override
     public void periodic() {
         // Update the odometer to accurately track robot position.

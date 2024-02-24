@@ -7,10 +7,10 @@ package frc.robot.commands.climb;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ClimbSubsystem;
 
-public class ClimberMove extends Command {
+public class RightClimberMove extends Command {
   private final ClimbSubsystem climbSubsystem;
   private double speed;
-  public ClimberMove(ClimbSubsystem subsystem, double speed) {
+  public RightClimberMove(ClimbSubsystem subsystem, double speed) {
     climbSubsystem = subsystem;
     this.speed = speed;
     addRequirements(climbSubsystem);
@@ -25,7 +25,6 @@ public class ClimberMove extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    climbSubsystem.moveLeftClimber(speed);
     climbSubsystem.moveRightClimber(speed);
   }
 

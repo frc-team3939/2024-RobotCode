@@ -50,7 +50,7 @@ public final class Constants {
 
         public static final boolean kFrontLeftDriveEncoderReversed = true;
         public static final boolean kBackLeftDriveEncoderReversed = true;
-        public static final boolean kFrontRightDriveEncoderReversed = false;
+        public static final boolean kFrontRightDriveEncoderReversed = true;
         public static final boolean kBackRightDriveEncoderReversed = false;
 
         //I think we need to use the analog ports on the robo rio for these???
@@ -65,10 +65,10 @@ public final class Constants {
         public static final boolean kBackRightDriveAbsoluteEncoderReversed = true;
 
         //***** We need to change these numbers once we get swerve up and working *****
-        public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = 1.084;//-2.349; 1.520;
-        public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = -4.173;//-1.365;//2.407;
-        public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = 5.840;//-3.076;//-1.644;
-        public static final double kBackRightDriveAbsoluteEncoderOffsetRad = -4.437;//-0.936;//1.618;
+        public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = 2.858;
+        public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = 0.331;
+        public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = -3.117;
+        public static final double kBackRightDriveAbsoluteEncoderOffsetRad = -2.787;
 
         //Check Andymark for the max speed of the swerve modules IN METERS PER SECOND
         public static final double kPhysicalMaxSpeedMetersPerSecond = 4.602;

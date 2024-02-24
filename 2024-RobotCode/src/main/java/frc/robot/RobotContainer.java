@@ -20,18 +20,20 @@ import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import edu.wpi.first.wpilibj.PS4Controller;
-import edu.wpi.first.wpilibj.PS4Controller.Button;
-import edu.wpi.first.wpilibj.PS4Controller.Axis;
 
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.SwerveJoystickCmd;
+import frc.robot.commands.climb.ClimberMove;
+import frc.robot.commands.climb.LeftClimberMove;
+import frc.robot.commands.climb.RightClimberMove;
 import frc.robot.commands.intake.SpinIntake;
 import frc.robot.commands.pivot.PivotToPositionPID;
 import frc.robot.commands.shooter.ShootCommand;
+import frc.robot.commands.ResetEncoders;
 import frc.robot.commands.ResetHeading;
+import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.PivotSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -43,9 +45,10 @@ public class RobotContainer {
     private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
     private final PivotSubsystem pivotSubsystem = new PivotSubsystem();
     private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+    private final ClimbSubsystem climbSubsystem = new ClimbSubsystem();
 
     private final Joystick driverJoytick = new Joystick(OIConstants.kDriverControllerPort);
-    private final PS4Controller driverPS4Controller = new PS4Controller(OIConstants.kDriverControllerPort);
+    
 
     Trigger button1 = new JoystickButton(driverJoytick, 1);
     Trigger button2 = new JoystickButton(driverJoytick, 2);
@@ -73,13 +76,20 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
         //button1.whileTrue(new SpinIntake(intakeSubsystem, 1));
-        button1.onTrue(new ResetHeading(swerveSubsystem));
+        //button1.onTrue(new ResetHeading(swerveSubsystem));
         //button1.onTrue(new PivotToPositionPID(pivotSubsystem, -0.4));
+        button1.onTrue(new ResetEncoders(swerveSubsystem));
+        button2.whileTrue(new ShootCommand(shooterSubsystem)); 
+        button3.onTrue(new PivotToPositionPID(pivotSubsystem, 0));
         button5.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
         button6.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, -0.5));
-        button3.onTrue(new PivotToPositionPID(pivotSubsystem, 0));
-        button2.whileTrue(new ShootCommand(shooterSubsystem));
-        new JoystickButton(driverPS4Controller, PS4Controller.Button.kCross.value).toggleOnTrue(new ResetHeading(swerveSubsystem));
+        button7.whileTrue(new RightClimberMove(climbSubsystem, 0.5));
+        button8.whileTrue(new RightClimberMove(climbSubsystem, -0.5));
+        button9.whileTrue(new LeftClimberMove(climbSubsystem, 0.5));
+        button10.whileTrue(new LeftClimberMove(climbSubsystem, -0.5));
+        button11.whileTrue(new ClimberMove(climbSubsystem, 0.5));
+        button12.whileTrue(new ClimberMove(climbSubsystem, -0.5));
+
     }
 
     public Command getAutonomousCommand() {
