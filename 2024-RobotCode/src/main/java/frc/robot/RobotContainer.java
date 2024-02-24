@@ -30,6 +30,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.commands.SwerveJoystickCmd;
 import frc.robot.commands.intake.SpinIntake;
 import frc.robot.commands.pivot.PivotToPositionPID;
+import frc.robot.commands.shooter.ShootCommand;
 import frc.robot.commands.ResetHeading;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.PivotSubsystem;
@@ -72,11 +73,12 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
         //button1.whileTrue(new SpinIntake(intakeSubsystem, 1));
-        // button1.onTrue(new ResetHeading(swerveSubsystem));
-        button1.onTrue(new PivotToPositionPID(pivotSubsystem, -0.4));
-        button5.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.33));
-        button6.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, -0.33));
+        button1.onTrue(new ResetHeading(swerveSubsystem));
+        //button1.onTrue(new PivotToPositionPID(pivotSubsystem, -0.4));
+        button5.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
+        button6.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, -0.5));
         button3.onTrue(new PivotToPositionPID(pivotSubsystem, 0));
+        button2.whileTrue(new ShootCommand(shooterSubsystem));
         new JoystickButton(driverPS4Controller, PS4Controller.Button.kCross.value).toggleOnTrue(new ResetHeading(swerveSubsystem));
     }
 

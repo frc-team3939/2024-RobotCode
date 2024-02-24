@@ -65,16 +65,16 @@ public final class Constants {
         public static final boolean kBackRightDriveAbsoluteEncoderReversed = true;
 
         //***** We need to change these numbers once we get swerve up and working *****
-        public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = 1.520;
-        public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = 2.407;
-        public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = -1.644;
-        public static final double kBackRightDriveAbsoluteEncoderOffsetRad = 1.618;
+        public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = 1.084;//-2.349; 1.520;
+        public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = -4.173;//-1.365;//2.407;
+        public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = 5.840;//-3.076;//-1.644;
+        public static final double kBackRightDriveAbsoluteEncoderOffsetRad = -4.437;//-0.936;//1.618;
 
         //Check Andymark for the max speed of the swerve modules IN METERS PER SECOND
-        public static final double kPhysicalMaxSpeedMetersPerSecond = 4.4196;
+        public static final double kPhysicalMaxSpeedMetersPerSecond = 4.602;
         public static final double kPhysicalMaxAngularSpeedRadiansPerSecond = 2 * 2 * Math.PI;
 
-        public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond / 1;
+        public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond / 4;
         public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = //
                 kPhysicalMaxAngularSpeedRadiansPerSecond / 1;
         public static final double kTeleDriveMaxAccelerationUnitsPerSecond = 5;

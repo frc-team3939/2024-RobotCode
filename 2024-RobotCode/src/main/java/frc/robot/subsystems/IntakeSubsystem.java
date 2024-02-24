@@ -26,7 +26,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public IntakeSubsystem() {
     //Change ID once robot is wired
-    intakeMotor = new CANSparkMax(52, MotorType.kBrushless);
+    intakeMotor = new CANSparkMax(51, MotorType.kBrushless);
     // IdleMode is brake vs coast. Brake stops when it stops recieving power, coast will let it coast.
     intakeMotor.setIdleMode(IdleMode.kBrake);
 

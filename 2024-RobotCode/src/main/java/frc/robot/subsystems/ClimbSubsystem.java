@@ -23,7 +23,7 @@ public class ClimbSubsystem extends SubsystemBase {
     public ClimbSubsystem() {
 
         //Change ID values when robot is wired
-        climbmotorLeft = new CANSparkMax(54, MotorType.kBrushless);
+        climbmotorLeft = new CANSparkMax(52, MotorType.kBrushless);
         climbmotorLeft.setIdleMode(IdleMode.kBrake);
 
         climbmotorRight = new CANSparkMax(55, MotorType.kBrushless);
@@ -38,69 +38,36 @@ public class ClimbSubsystem extends SubsystemBase {
 
     }
 
-    public void climberDown(double speed) {
-        climbmotorLeft.set(speed);
-        climbmotorRight.set(-speed);
+    public void zeroClimbEncoders() {
+        climbencoderLeft.setPosition(0);
+        climbencoderRight.setPosition(0);
     }
 
-    public void LeftclimberDown(double speed) {
-        climbmotorLeft.set(speed);
+    public void moveClimbPosition(double positionDouble) {
+        climbencoderLeft.setPosition(positionDouble);
+        climbencoderRight.setPosition(positionDouble);
     }
 
-    public void RightclimberDown(double speed) {
-        climbmotorRight.set(-speed);
+    public void moveLeftClimbPosition(double positionDouble) {
+        climbencoderLeft.setPosition(positionDouble);
     }
 
-
-    public void climberUp() {
-        climbmotorLeft.setIdleMode(IdleMode.kCoast);
-        climbmotorRight.setIdleMode(IdleMode.kCoast);
+    public void moveRightClimbPosition(double positionDouble) {
+        climbencoderRight.setPosition(positionDouble);
     }
 
-    public void LeftclimberUp() {
-        climbmotorLeft.setIdleMode(IdleMode.kCoast);
+    public void stopArms () {
+        climbmotorLeft.set(0);
+        climbmotorRight.set(0);
     }
 
-    public void RightclimberUp() {
-        climbmotorLeft.setIdleMode(IdleMode.kCoast);
-        climbmotorRight.setIdleMode(IdleMode.kCoast);
+    public void stopLeftArm () {
+        climbmotorLeft.set(0);
     }
 
-    public void climberLock() {
-        climbmotorLeft.setIdleMode(IdleMode.kBrake);
-        climbmotorRight.setIdleMode(IdleMode.kBrake);
+    public void stopRightArm () {
+        climbmotorRight.set(0);
     }
-
-    // public void zeroClimbEncoders() {
-    //     climbencoderLeft.setPosition(0);
-    //     climbencoderRight.setPosition(0);
-    // }
-
-    // public void moveClimbPosition(double positionDouble) {
-    //     climbencoderLeft.setPosition(positionDouble);
-    //     climbencoderRight.setPosition(positionDouble);
-    // }
-
-    // public void moveLeftClimbPosition(double positionDouble) {
-    //     climbencoderLeft.setPosition(positionDouble);
-    // }
-
-    // public void moveRightClimbPosition(double positionDouble) {
-    //     climbencoderRight.setPosition(positionDouble);
-    // }
-
-    // public void stopArms () {
-    //     climbmotorLeft.set(0);
-    //     climbmotorRight.set(0);
-    // }
-
-    // public void stopLeftArm () {
-    //     climbmotorLeft.set(0);
-    // }
-
-    // public void stopRightArm () {
-    //     climbmotorRight.set(0);
-    // }
 
 
     public boolean isLeftLimitSwitchTripped() {

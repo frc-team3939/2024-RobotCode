@@ -24,6 +24,7 @@ public class ShootCommand extends Command {
   @Override
   public void initialize() {
     i = 0;
+    ss = 1;
     shootersubsystem.spinShooter(ss);
   }
 
@@ -34,7 +35,7 @@ public class ShootCommand extends Command {
     //ss = 70;//(SmartDashboard.getNumber("Speed", 0)); //Delete when speed is decided on
     shootersubsystem.spinShooter(ss);
     if(i > 75){
-      shootersubsystem.spinFeeder(0.5);
+      shootersubsystem.spinFeeder(0.25);
     } 
   }
 
