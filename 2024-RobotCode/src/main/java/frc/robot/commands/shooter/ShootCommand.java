@@ -13,8 +13,9 @@ public class ShootCommand extends Command {
   double fs;
   double i;
   private final ShooterSubsystem shootersubsystem;
-  public ShootCommand(ShooterSubsystem subsystem) {
+  public ShootCommand(ShooterSubsystem subsystem, double ss) {
     shootersubsystem = subsystem;
+    this.ss = ss;
     addRequirements(shootersubsystem);
 
 
@@ -24,7 +25,6 @@ public class ShootCommand extends Command {
   @Override
   public void initialize() {
     i = 0;
-    ss = 1;
     shootersubsystem.spinShooter(ss);
   }
 

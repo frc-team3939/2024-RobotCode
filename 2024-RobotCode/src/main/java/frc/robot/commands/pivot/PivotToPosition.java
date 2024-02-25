@@ -7,10 +7,11 @@ package frc.robot.commands.pivot;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.PivotSubsystem;
 
-public class ZeroPivotEncoders extends Command {
+public class PivotToPosition extends Command {
   /** Creates a new ZeroPivotEncoders. */
+  double position;
   private final PivotSubsystem pivotsubsystem;
-  public ZeroPivotEncoders(PivotSubsystem subsystem) {
+  public PivotToPosition(PivotSubsystem subsystem, double position) {
     pivotsubsystem = subsystem;
     addRequirements(pivotsubsystem);
   }
@@ -18,7 +19,7 @@ public class ZeroPivotEncoders extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    pivotsubsystem.movePivot(0);
+    pivotsubsystem.movePivot(position);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

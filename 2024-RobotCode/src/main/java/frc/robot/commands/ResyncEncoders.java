@@ -7,10 +7,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.SwerveSubsystem;
 
-public class ResetEncoders extends Command {
+public class ResyncEncoders extends Command {
   /** Creates a new ZeroHeading. */
   private final SwerveSubsystem swerveSubsystem;
-  public ResetEncoders(SwerveSubsystem swerveSubsystem) {
+  public ResyncEncoders(SwerveSubsystem swerveSubsystem) {
     this.swerveSubsystem = swerveSubsystem;
     addRequirements(swerveSubsystem);
   }

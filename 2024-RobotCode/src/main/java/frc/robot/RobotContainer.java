@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 import frc.robot.Constants.AutoConstants;
@@ -27,11 +28,16 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.commands.SwerveJoystickCmd;
 import frc.robot.commands.climb.ClimberMove;
 import frc.robot.commands.climb.LeftClimberMove;
+import frc.robot.commands.climb.SetPowerLeft;
+import frc.robot.commands.climb.SetPowerRight;
 import frc.robot.commands.climb.RightClimberMove;
+import frc.robot.commands.climb.ZeroClimber;
+import frc.robot.commands.climb.ZeroLeftClimber;
+import frc.robot.commands.climb.ZeroRightClimber;
 import frc.robot.commands.intake.SpinIntake;
-import frc.robot.commands.pivot.PivotToPositionPID;
+import frc.robot.commands.pivot.PivotToPosition;
 import frc.robot.commands.shooter.ShootCommand;
-import frc.robot.commands.ResetEncoders;
+import frc.robot.commands.ResyncEncoders;
 import frc.robot.commands.ResetHeading;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -47,48 +53,94 @@ public class RobotContainer {
     private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
     private final ClimbSubsystem climbSubsystem = new ClimbSubsystem();
 
-    private final Joystick driverJoytick = new Joystick(OIConstants.kDriverControllerPort);
+    private final Joystick driverJoystick = new Joystick(OIConstants.kDriverControllerPort);
+    private final Joystick driverstationTop = new Joystick(OIConstants.kTopHalfButtonBoardPort);
+    private final Joystick driverstationBottom = new Joystick(OIConstants.kBottomHalfButtonBoardPort);
     
 
-    Trigger button1 = new JoystickButton(driverJoytick, 1);
-    Trigger button2 = new JoystickButton(driverJoytick, 2);
-    Trigger button3 = new JoystickButton(driverJoytick, 3);
-    Trigger button4 = new JoystickButton(driverJoytick, 4);
-    Trigger button5 = new JoystickButton(driverJoytick, 5);
-    Trigger button6 = new JoystickButton(driverJoytick, 6);
-    Trigger button7 = new JoystickButton(driverJoytick, 7);
-    Trigger button8 = new JoystickButton(driverJoytick, 8);
-    Trigger button9 = new JoystickButton(driverJoytick, 9);
-    Trigger button10 = new JoystickButton(driverJoytick, 10);
-    Trigger button11 = new JoystickButton(driverJoytick, 11);
-    Trigger button12 = new JoystickButton(driverJoytick, 12);
+    Trigger X1 = new JoystickButton(driverJoystick, 1);
+    Trigger O2 = new JoystickButton(driverJoystick, 2);
+    Trigger Square3 = new JoystickButton(driverJoystick, 3);
+    Trigger Triangle4 = new JoystickButton(driverJoystick, 4);
+    Trigger leftShoulder5 = new JoystickButton(driverJoystick, 5);
+    Trigger rightShoulder6 = new JoystickButton(driverJoystick, 6);
+    Trigger leftTrigger7 = new JoystickButton(driverJoystick, 7);
+    Trigger rightTrigger8 = new JoystickButton(driverJoystick, 8);
+    Trigger leftStickPress9 = new JoystickButton(driverJoystick, 9);
+    Trigger rightStickPress10 = new JoystickButton(driverJoystick, 10);
+    
+    Trigger driverPOVNorth = new POVButton(driverJoystick, 0);
+    Trigger driverPOVSouth = new POVButton(driverJoystick, 180);
+    Trigger driverPOVWest = new POVButton(driverJoystick, 270);
+    Trigger driverPOVEast = new POVButton(driverJoystick, 90);
+
+    Trigger buttonT1 = new JoystickButton(driverstationTop, 1);
+    Trigger buttonT2 = new JoystickButton(driverstationTop, 2);
+    Trigger buttonT3 = new JoystickButton(driverstationTop, 3);
+    Trigger buttonT4 = new JoystickButton(driverstationTop, 4);
+    Trigger buttonT5 = new JoystickButton(driverstationTop, 5);
+    Trigger buttonT6 = new JoystickButton(driverstationTop, 6);
+    Trigger buttonT7 = new JoystickButton(driverstationTop, 7);
+    Trigger buttonT8 = new JoystickButton(driverstationTop, 8);
+    Trigger buttonT9 = new JoystickButton(driverstationTop, 9);
+    Trigger buttonT10 = new JoystickButton(driverstationTop, 10);
+
+    Trigger buttonB1 = new JoystickButton(driverstationBottom, 1);
+    Trigger buttonB2 = new JoystickButton(driverstationBottom, 2);
+    Trigger buttonB3 = new JoystickButton(driverstationBottom, 3);
+    Trigger buttonB4 = new JoystickButton(driverstationBottom, 4);
+    Trigger buttonB5 = new JoystickButton(driverstationBottom, 5);
+    Trigger buttonB6 = new JoystickButton(driverstationBottom, 6);
+    Trigger buttonB7 = new JoystickButton(driverstationBottom, 7);
+    Trigger buttonB8 = new JoystickButton(driverstationBottom, 8);
+    Trigger buttonB9 = new JoystickButton(driverstationBottom, 9);
+    Trigger buttonB10 = new JoystickButton(driverstationBottom, 10);
 
     public RobotContainer() {
         swerveSubsystem.setDefaultCommand(new SwerveJoystickCmd(
                 swerveSubsystem,
-                () -> driverJoytick.getRawAxis(OIConstants.kDriverYAxis),
-                () -> -driverJoytick.getRawAxis(OIConstants.kDriverXAxis),
-                () -> driverJoytick.getRawAxis(OIConstants.kDriverRotAxis),
-                () -> !driverJoytick.getRawButton(OIConstants.kDriverFieldOrientedButtonIdx)));
+                () -> driverJoystick.getRawAxis(OIConstants.kDriverYAxis),
+                () -> -driverJoystick.getRawAxis(OIConstants.kDriverXAxis),
+                () -> driverJoystick.getRawAxis(OIConstants.kDriverRotAxis),
+                () -> !driverJoystick.getRawButton(OIConstants.kDriverFieldOrientedButtonIdx)));
 
         configureButtonBindings();
     }
 
     private void configureButtonBindings() {
-        //button1.whileTrue(new SpinIntake(intakeSubsystem, 1));
-        //button1.onTrue(new ResetHeading(swerveSubsystem));
-        //button1.onTrue(new PivotToPositionPID(pivotSubsystem, -0.4));
-        button1.onTrue(new ResetEncoders(swerveSubsystem));
-        button2.whileTrue(new ShootCommand(shooterSubsystem)); 
-        button3.onTrue(new PivotToPositionPID(pivotSubsystem, 0));
-        button5.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
-        button6.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, -0.5));
-        button7.whileTrue(new RightClimberMove(climbSubsystem, 0.5));
-        button8.whileTrue(new RightClimberMove(climbSubsystem, -0.5));
-        button9.whileTrue(new LeftClimberMove(climbSubsystem, 0.5));
-        button10.whileTrue(new LeftClimberMove(climbSubsystem, -0.5));
-        button11.whileTrue(new ClimberMove(climbSubsystem, 0.5));
-        button12.whileTrue(new ClimberMove(climbSubsystem, -0.5));
+
+        X1.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, -0.5));
+        //O2.whileTrue(new ShootCommand(shooterSubsystem)); 
+        //Square3.onTrue(new PivotToPositionPID(pivotSubsystem, 0));
+        Triangle4.onTrue(new ResetHeading(swerveSubsystem));
+        leftShoulder5.whileTrue(new ShootCommand(shooterSubsystem, 0.5));
+        //rightShoulder6.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, -0.5));
+        leftTrigger7.whileTrue(new ShootCommand(shooterSubsystem, 1));
+        rightTrigger8.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
+        leftStickPress9.onTrue(new ResyncEncoders(swerveSubsystem));
+        // rightStickPress10.onTrue(new ResetHeading(swerveSubsystem));
+
+        buttonT1.whileTrue(new LeftClimberMove(climbSubsystem, -0.5));
+        buttonT2.whileTrue(new ClimberMove(climbSubsystem, -0.5)); 
+        buttonT3.whileTrue(new RightClimberMove(climbSubsystem, -0.5));
+        buttonT4.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
+        buttonT5.onTrue(new ResyncEncoders(swerveSubsystem));
+        buttonT6.whileTrue(new LeftClimberMove(climbSubsystem, 0.5));
+        buttonT7.whileTrue(new ClimberMove(climbSubsystem, 0.5));
+        buttonT8.whileTrue(new RightClimberMove(climbSubsystem, 0.5));
+        buttonT9.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, -0.5));
+        buttonT10.onTrue(new ResetHeading(swerveSubsystem));
+
+        buttonB1.onTrue(new ZeroLeftClimber(climbSubsystem));
+        buttonB2.onTrue(new ZeroClimber(climbSubsystem));
+        buttonB3.onTrue(new ZeroRightClimber(climbSubsystem));
+        // buttonB4.onTrue(new PivotToPositionPID(pivotSubsystem, 0));
+        // buttonB5.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
+        buttonB6.onTrue(new PivotToPosition(pivotSubsystem, 0.289));
+        // buttonB7.whileTrue(new RightClimberMove(climbSubsystem, 0.5));
+        // buttonB8.whileTrue(new RightClimberMove(climbSubsystem, -0.5));
+        buttonB9.whileTrue(new SetPowerLeft(pivotSubsystem, 0.10));
+        buttonB10.whileTrue(new SetPowerRight(pivotSubsystem, 0.10));
 
     }
 

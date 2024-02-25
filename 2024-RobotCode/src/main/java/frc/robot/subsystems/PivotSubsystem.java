@@ -4,57 +4,83 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
-import com.revrobotics.SparkPIDController;
-import com.revrobotics.CANSparkBase.IdleMode;
-import com.revrobotics.CANSparkLowLevel.MotorType;
+import edu.wpi.first.wpilibj.DutyCycleEncoder;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.sensors.CANCoder;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class PivotSubsystem extends SubsystemBase {
 
-  private final CANSparkMax pivotmotor; 
-  private final RelativeEncoder encoder;
+  private final TalonSRX pivotmotor;
+  private final VictorSPX slavemotor;
+
+  private final DutyCycleEncoder absencoder;
 
   public PivotSubsystem() {
-    pivotmotor = new CANSparkMax(98, MotorType.kBrushless);
-    pivotmotor.setIdleMode(IdleMode.kBrake);
     
-    encoder = pivotmotor.getEncoder();
+    pivotmotor = new TalonSRX(22);
+    slavemotor = new VictorSPX(35);
+    absencoder = new DutyCycleEncoder(0);
+
+    pivotmotor.setNeutralMode(NeutralMode.Brake);
+    slavemotor.setNeutralMode(NeutralMode.Brake);
+
+    pivotmotor.setInverted(false);
+    slavemotor.setInverted(true);
+
+    resetEncoders();
   }
 
   public void zeroPivotEncoders() {
-    encoder.setPosition(0);
+    absencoder.reset();
   }
 
-  public void moveArmPosition (double movePosition) {
-    encoder.setPosition(movePosition);  
+  public void SetPowerLeft(double percent) {
+    pivotmotor.set(ControlMode.PercentOutput, percent);
+  }
+
+  public void SetPowerRight(double percent) {
+    slavemotor.set(ControlMode.PercentOutput, percent);
   }
 
   public boolean isRedSide() {
-    if (getPivotPosition() < 0)
+    if (getABSPivotPositionRad() < 0)
       return true;
     else 
       return false;
   }
 
-  public void stopPivot () {
-    pivotmotor.set(0);
+  public void resetEncoders() {
+    pivotmotor.setSelectedSensorPosition(getABSPivotPositionRad() * 497 / (1 * Math.PI));
   }
 
-  public double getPivotPosition() {
-    return encoder.getPosition();
+  public double getABSPivotPositionRad() {
+    double absoluteEncoderOffsetRad = -2.59;
+    double angle = absencoder.getAbsolutePosition();
+    angle = angle * 2 * Math.PI;
+    return -(angle + absoluteEncoderOffsetRad);
   }
 
-  public void movePivot (double moveSpeed) {
-    pivotmotor.set(moveSpeed);
+  public double getPGPivotPositionRad() {
+    double angle = pivotmotor.getSelectedSensorPosition();
+    angle = angle * 1 * Math.PI / 497;
+    return angle;
+  }
+
+  public void movePivot (double movePosition) {
+    pivotmotor.set(ControlMode.Position , movePosition);
+    slavemotor.set(ControlMode.Position , -movePosition);
   }
 
   
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Pivot Encoder Position", getPivotPosition());
+    SmartDashboard.putNumber("ABS Pivot Encoder Position", getABSPivotPositionRad());
+    SmartDashboard.putNumber("PG Pivot Encoder Position", getPGPivotPositionRad());
   }
 }

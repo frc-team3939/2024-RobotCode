@@ -2,36 +2,41 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.pivot;
+package frc.robot.commands.climb;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.PivotSubsystem;
 
-public class ZeroPivotEncoders extends Command {
-  /** Creates a new ZeroPivotEncoders. */
-  private final PivotSubsystem pivotsubsystem;
-  public ZeroPivotEncoders(PivotSubsystem subsystem) {
-    pivotsubsystem = subsystem;
-    addRequirements(pivotsubsystem);
+public class SetPowerRight extends Command {
+  private final PivotSubsystem pivotSubsystem;
+  double percent;
+  public SetPowerRight(PivotSubsystem subsystem, double percent) {
+    pivotSubsystem = subsystem;
+    this.percent = percent;
+    addRequirements(pivotSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    pivotsubsystem.movePivot(0);
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    pivotSubsystem.SetPowerRight(percent);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    pivotSubsystem.SetPowerRight(0);
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }

@@ -20,8 +20,8 @@ public class ClimbSubsystem extends SubsystemBase {
     private final RelativeEncoder climbencoderLeft;
     private final RelativeEncoder climbencoderRight;
 
-    // private final DigitalInput limitswitchLeft;
-    // private final DigitalInput limitswitchRight;
+    private final DigitalInput limitswitchLeft;
+    private final DigitalInput limitswitchRight;
 
     private final SparkPIDController climbmotorLeftPID;
     private final SparkPIDController climbmotorRightPID;
@@ -42,8 +42,8 @@ public class ClimbSubsystem extends SubsystemBase {
         climbmotorRightPID = climbmotorLeft.getPIDController();
 
         //Change channel values when robot is wired
-        // limitswitchLeft = new DigitalInput(8);
-        // limitswitchRight = new DigitalInput(8);
+        limitswitchLeft = new DigitalInput(1);
+        limitswitchRight = new DigitalInput(2);
 
         climbmotorLeft.setIdleMode(IdleMode.kBrake);
         climbmotorLeft.setSoftLimit(SoftLimitDirection.kForward, 108.5f);
@@ -80,6 +80,15 @@ public class ClimbSubsystem extends SubsystemBase {
         climbencoderRight.setPosition(0);
     }
 
+    public void zeroLeftClimbEncoder() {
+        climbencoderLeft.setPosition(0);
+    }
+
+    public void zeroRightClimbEncoder() {
+        climbencoderRight.setPosition(0);
+    }
+
+
     public void moveClimber(double speed) {
         climbmotorLeft.set(-speed);
         climbmotorRight.set(speed);
@@ -108,14 +117,13 @@ public class ClimbSubsystem extends SubsystemBase {
     }
 
 
-    // public boolean isLeftLimitSwitchTripped() {
-    //     return !limitswitchLeft.get();
-    // }
+    public boolean isLeftLimitSwitchTripped() {
+        return limitswitchLeft.get();
+    }
 
-    // public boolean isRightLimitSwitchTripped() {
-    //     return !limitswitchRight.get();
-    // }
-
+    public boolean isRightLimitSwitchTripped() {
+        return limitswitchRight.get();
+    }
 
 
     public double getLeftArmPosition() {
@@ -130,8 +138,8 @@ public class ClimbSubsystem extends SubsystemBase {
     public void periodic() {
         SmartDashboard.putNumber("Left Arm Position", getLeftArmPosition());
         SmartDashboard.putNumber("Right Arm Position", getRightArmPosition());
-        // SmartDashboard.putBoolean("Left Limit Switch", isLeftLimitSwitchTripped());
-        // SmartDashboard.putBoolean("Right Limit Switch", isRightLimitSwitchTripped());
+        SmartDashboard.putBoolean("Left Limit Switch", isLeftLimitSwitchTripped());
+        SmartDashboard.putBoolean("Right Limit Switch", isRightLimitSwitchTripped());
     }
 
 
