@@ -10,6 +10,7 @@ import com.revrobotics.SparkPIDController;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -25,6 +26,8 @@ public class ShooterSubsystem extends SubsystemBase {
 
   private final SparkPIDController Ypid;
   private final SparkPIDController Spid;
+
+  private final DigitalInput feeder_beambreak;
 
   public ShooterSubsystem() {
     Yshootermotor = new CANSparkMax(53, MotorType.kBrushless);
@@ -48,6 +51,8 @@ public class ShooterSubsystem extends SubsystemBase {
 
     Spid = Sshootermotor.getPIDController();
     Spid.setP(1);
+
+    feeder_beambreak = new DigitalInput(3);
   }
 
   public void spinShooter(double sspeed) {
@@ -79,11 +84,17 @@ public class ShooterSubsystem extends SubsystemBase {
   public double getFeederEncoder() {
     return feederencoder.getPosition();
   }
+
+  public double getFeederVelocity() {
+    return feederencoder.getVelocity();
+  }
   
   @Override
   public void periodic() {
     SmartDashboard.putNumber("Yellow Shooter Encoder", getYellowShooterEncoder());
     SmartDashboard.putNumber("Silver Shooter Encoder", getSilverShooterEncoder());
     SmartDashboard.putNumber("Feeder Encoder", getFeederEncoder());
+    SmartDashboard.putNumber("Feeder Velocity", getFeederVelocity());
+    SmartDashboard.putBoolean("Feeder Beam Break State", feeder_beambreak.get());
   }
 }

@@ -1,0 +1,43 @@
+{
+  "version": 1.0,
+  "startingPose": null,
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "PivotToSpeaker"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShootCommand(0.5)"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "MiddleSpeaker-MiddleNote"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "MiddleNote-MiddleSpeaker"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShootCommand(0.5)"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}

@@ -4,35 +4,42 @@
 
 package frc.robot.commands.pivot;
 
+import java.util.function.Supplier;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.PivotSubsystem;
 
-public class PivotToPosition extends Command {
-  /** Creates a new ZeroPivotEncoders. */
-  double targ_position;
-  private final PivotSubsystem pivotsubsystem;
-  public PivotToPosition(PivotSubsystem subsystem, double position) {
-    pivotsubsystem = subsystem;
-    targ_position = position;
-    addRequirements(pivotsubsystem);
+public class ManualPivot extends Command {
+  private final PivotSubsystem pivotSubsystem;
+  Supplier<Double> powerFunction;
+  public ManualPivot(PivotSubsystem subsystem, Supplier<Double> spdFunction) {
+    pivotSubsystem = subsystem;
+    this.powerFunction = spdFunction;
+    addRequirements(pivotSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    pivotsubsystem.movePivot(targ_position);
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    pivotsubsystem.movePivot(targ_position);
+    double power = powerFunction.get();
+    // pivotSubsystem.SetPowerLeft(power);
+    // pivotSubsystem.SetPowerRight(power);
+    pivotSubsystem.SetDesiredPower(power);
+    SmartDashboard.putNumber("Pivot Power", power);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    pivotsubsystem.movePivot(0);
+    pivotSubsystem.SetPowerLeft(0);
+    pivotSubsystem.SetPowerRight(0);
   }
 
   // Returns true when the command should end.
