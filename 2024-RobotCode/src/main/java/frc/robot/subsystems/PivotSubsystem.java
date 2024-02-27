@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class PivotSubsystem extends SubsystemBase {
 
   private final TalonSRX pivotmotor;
-  private final VictorSPX slavemotor;
+  private final VictorSPX followermotor;
 
   private final DutyCycleEncoder absencoder;
 
@@ -30,14 +30,14 @@ public class PivotSubsystem extends SubsystemBase {
   public PivotSubsystem() {
     
     pivotmotor = new TalonSRX(22);
-    slavemotor = new VictorSPX(35);
+    followermotor = new VictorSPX(35);
     absencoder = new DutyCycleEncoder(0);
 
     pivotmotor.setNeutralMode(NeutralMode.Coast);
-    slavemotor.setNeutralMode(NeutralMode.Coast);
+    followermotor.setNeutralMode(NeutralMode.Coast);
 
     pivotmotor.setInverted(false);
-    slavemotor.setInverted(true);
+    followermotor.setInverted(true);
 
     desired_power = 0;
 
@@ -54,7 +54,7 @@ public class PivotSubsystem extends SubsystemBase {
 
     resetEncoders();
 
-    slavemotor.follow(pivotmotor);
+    followermotor.follow(pivotmotor);
   }
 
   public void zeroPivotEncoders() {
@@ -66,7 +66,7 @@ public class PivotSubsystem extends SubsystemBase {
   }
 
   public void SetPowerRight(double percent) {
-    // slavemotor.set(ControlMode.PercentOutput, percent);
+    // followermotor.set(ControlMode.PercentOutput, percent);
   }
 
   public void SetDesiredPower(double percent){
@@ -109,7 +109,7 @@ public class PivotSubsystem extends SubsystemBase {
     ff_val += gravity_factor;
     pivotmotor.set(ControlMode.PercentOutput, ff_val);
     pivotmotor.set(ControlMode.Position,position_target,DemandType.ArbitraryFeedForward,ff_val);
-    //slavemotor.set(ControlMode.PercentOutput, cmd_val);
+    //followermotor.set(ControlMode.PercentOutput, cmd_val);
     
     SmartDashboard.putNumber("Pivot/ABS Encoder Position", getABSPivotPositionRad());
     SmartDashboard.putNumber("Pivot/PG Encoder Position", getPGPivotPositionRad());
