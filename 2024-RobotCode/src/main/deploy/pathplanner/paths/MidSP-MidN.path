@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.3057281252407118,
-        "y": 5.54487565115481
+        "x": 1.3160154641111295,
+        "y": 5.575737667766062
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.3057281252407122,
-        "y": 5.54487565115481
+        "x": 2.316015464111131,
+        "y": 5.575737667766062
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.663656856135768,
-        "y": 5.54487565115481
+        "x": 2.8488289558032753,
+        "y": 5.575737667766062
       },
       "prevControl": {
-        "x": 2.204859995512021,
-        "y": 5.54487565115481
+        "x": 1.8488289558032753,
+        "y": 5.575737667766062
       },
       "nextControl": null,
       "isLocked": false,
@@ -33,15 +33,15 @@
   "eventMarkers": [
     {
       "name": "New Event Marker",
-      "waypointRelativePos": 0.4,
+      "waypointRelativePos": 0.3,
       "command": {
-        "type": "parallel",
+        "type": "sequential",
         "data": {
           "commands": [
             {
               "type": "named",
               "data": {
-                "name": "SpinIntake(0.5)"
+                "name": "SpinIntake"
               }
             }
           ]

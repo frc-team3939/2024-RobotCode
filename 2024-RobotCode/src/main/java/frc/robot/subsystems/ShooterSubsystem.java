@@ -88,6 +88,10 @@ public class ShooterSubsystem extends SubsystemBase {
   public double getFeederVelocity() {
     return feederencoder.getVelocity();
   }
+
+  public boolean isBeamBreakTripped() {
+    return feeder_beambreak.get();
+  }
   
   @Override
   public void periodic() {

@@ -102,20 +102,20 @@ public class PivotSubsystem extends SubsystemBase {
   }
 
   
-  @Override
-  public void periodic() {
-    double ff_val = desired_power;
-    double gravity_factor = -0.3*Math.sin(getABSPivotPositionRad());
-    ff_val += gravity_factor;
-    pivotmotor.set(ControlMode.PercentOutput, ff_val);
-    pivotmotor.set(ControlMode.Position,position_target,DemandType.ArbitraryFeedForward,ff_val);
-    //followermotor.set(ControlMode.PercentOutput, cmd_val);
+  // @Override
+  // public void periodic() {
+  //   double ff_val = desired_power;
+  //   double gravity_factor = -0.3*Math.sin(getABSPivotPositionRad());
+  //   ff_val += gravity_factor;
+  //   pivotmotor.set(ControlMode.PercentOutput, ff_val);
+  //   pivotmotor.set(ControlMode.Position,position_target,DemandType.ArbitraryFeedForward,ff_val);
+  //   //followermotor.set(ControlMode.PercentOutput, cmd_val);
     
-    SmartDashboard.putNumber("Pivot/ABS Encoder Position", getABSPivotPositionRad());
-    SmartDashboard.putNumber("Pivot/PG Encoder Position", getPGPivotPositionRad());
-    // if (Math.abs(getPGPivotPositionRad()) > 0.01 ){ // Prevent divide by zero
-    //   SmartDashboard.putNumber("Pivot/ABS-INC Ratio", getABSPivotPositionRad()/getPGPivotPositionRad());
-    // }
-    SmartDashboard.putNumber("Pivot/Target (encoder counts)", position_target);
-  }
+  //   SmartDashboard.putNumber("Pivot/ABS Encoder Position", getABSPivotPositionRad());
+  //   SmartDashboard.putNumber("Pivot/PG Encoder Position", getPGPivotPositionRad());
+  //   // if (Math.abs(getPGPivotPositionRad()) > 0.01 ){ // Prevent divide by zero
+  //   //   SmartDashboard.putNumber("Pivot/ABS-INC Ratio", getABSPivotPositionRad()/getPGPivotPositionRad());
+  //   // }
+  //   SmartDashboard.putNumber("Pivot/Target (encoder counts)", position_target);
+  // }
 }

@@ -34,8 +34,8 @@ public class ShootCommand extends Command {
     i = i + 1;
     //ss = 70;//(SmartDashboard.getNumber("Speed", 0)); //Delete when speed is decided on
     shootersubsystem.spinShooter(ss);
-    if(i > 75){
-      shootersubsystem.spinFeeder(0.75);
+    if(i > 100){
+      shootersubsystem.spinFeeder(1);
     } 
   }
 
@@ -49,6 +49,6 @@ public class ShootCommand extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return shootersubsystem.isBeamBreakTripped();
   }
 }

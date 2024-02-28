@@ -1,38 +1,71 @@
 {
   "version": 1.0,
-  "startingPose": null,
+  "startingPose": {
+    "position": {
+      "x": 1.32,
+      "y": 5.58
+    },
+    "rotation": 0
+  },
   "command": {
     "type": "sequential",
     "data": {
       "commands": [
         {
-          "type": "named",
+          "type": "sequential",
           "data": {
-            "name": "PivotToSpeaker"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "ResetHeading"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "ResyncEncoders"
+                }
+              }
+            ]
           }
         },
         {
-          "type": "named",
+          "type": "sequential",
           "data": {
-            "name": "ShootCommand(0.5)"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "ShootCommand"
+                }
+              }
+            ]
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "MiddleSpeaker-MiddleNote"
+            "pathName": "MidSP-MidN"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "MiddleNote-MiddleSpeaker"
+            "pathName": "MidN-MidSP"
           }
         },
         {
-          "type": "named",
+          "type": "sequential",
           "data": {
-            "name": "ShootCommand(0.5)"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "ShootCommand"
+                }
+              }
+            ]
           }
         }
       ]
