@@ -7,13 +7,13 @@ package frc.robot.commands.shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ShooterSubsystem;
 
-public class ShootCommand extends Command {
+public class ShootAmp extends Command {
   // Creates a new ShootCommand
   double ss;
   double fs;
   double i;
   private final ShooterSubsystem shootersubsystem;
-  public ShootCommand(ShooterSubsystem subsystem, double ss) {
+  public ShootAmp(ShooterSubsystem subsystem, double ss) {
     shootersubsystem = subsystem;
     this.ss = ss;
     addRequirements(shootersubsystem);
@@ -25,7 +25,7 @@ public class ShootCommand extends Command {
   @Override
   public void initialize() {
     i = 0;
-    shootersubsystem.spinShooter(ss);
+    shootersubsystem.spinShooterAmp(ss);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -33,7 +33,7 @@ public class ShootCommand extends Command {
   public void execute() {
     i = i + 1;
     //ss = 70;//(SmartDashboard.getNumber("Speed", 0)); //Delete when speed is decided on
-    shootersubsystem.spinShooter(ss);
+    shootersubsystem.spinShooterAmp(ss);
     if(i > 50){
       shootersubsystem.spinFeeder(1);
     } 

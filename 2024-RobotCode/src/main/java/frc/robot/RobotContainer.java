@@ -25,6 +25,7 @@ import frc.robot.commands.climb.ZeroRightClimber;
 import frc.robot.commands.intake.SpinIntake;
 import frc.robot.commands.pivot.ManualPivot;
 import frc.robot.commands.pivot.PivotToPosition;
+import frc.robot.commands.shooter.ShootAmp;
 import frc.robot.commands.shooter.ShootCommand;
 import frc.robot.commands.ResyncEncoders;
 import frc.robot.commands.ResetHeading;
@@ -45,7 +46,7 @@ public class RobotContainer {
     private final Joystick driverJoystick = new Joystick(OIConstants.kDriverControllerPort);
     private final Joystick driverstationTop = new Joystick(OIConstants.kTopHalfButtonBoardPort);
     private final Joystick driverstationBottom = new Joystick(OIConstants.kBottomHalfButtonBoardPort);
-    private final Joystick debug_secondary = new Joystick(4);
+    // private final Joystick debug_secondary = new Joystick(4);
 
     private final SendableChooser<Command> autoChooser;
 
@@ -88,9 +89,9 @@ public class RobotContainer {
     Trigger buttonB9 = new JoystickButton(driverstationBottom, 9);
     Trigger buttonB10 = new JoystickButton(driverstationBottom, 10);
 
-    Trigger buttonD7 = new JoystickButton(debug_secondary, 7);
-    Trigger buttonD8 = new JoystickButton(debug_secondary, 8);
-    Trigger buttonD9 = new JoystickButton(debug_secondary, 9);
+    // Trigger buttonD7 = new JoystickButton(debug_secondary, 7);
+    // Trigger buttonD8 = new JoystickButton(debug_secondary, 8);
+    // Trigger buttonD9 = new JoystickButton(debug_secondary, 9);
 
     public RobotContainer() {
         
@@ -104,6 +105,7 @@ public class RobotContainer {
         configureButtonBindings();
         
         NamedCommands.registerCommand("SpinIntake", new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
+        NamedCommands.registerCommand("SpinIntake2", new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
         NamedCommands.registerCommand("ShootCommand", new ShootCommand(shooterSubsystem, 1));
         NamedCommands.registerCommand("ResetHeading", new ResetHeading(swerveSubsystem));
         NamedCommands.registerCommand("ResyncEncoders", new ResyncEncoders(swerveSubsystem));
@@ -124,9 +126,9 @@ public class RobotContainer {
         //O2.whileTrue(new ShootCommand(shooterSubsystem)); 
         //Square3.onTrue(new PivotToPositionPID(pivotSubsystem, 0));
         Triangle4.onTrue(new ResetHeading(swerveSubsystem));
-        leftShoulder5.whileTrue(new ShootCommand(shooterSubsystem, 0.5));
+        leftShoulder5.whileTrue(new ShootAmp(shooterSubsystem, 0.26));
         //rightShoulder6.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, -0.5));
-        leftTrigger7.whileTrue(new ShootCommand(shooterSubsystem, 1));
+        leftTrigger7.whileTrue(new ShootCommand(shooterSubsystem, 90));
         rightTrigger8.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
         leftStickPress9.onTrue(new ResyncEncoders(swerveSubsystem));
         // rightStickPress10.onTrue(new ResetHeading(swerveSubsystem));
@@ -145,7 +147,7 @@ public class RobotContainer {
         buttonB1.onTrue(new ZeroLeftClimber(climbSubsystem));
         buttonB2.onTrue(new ZeroClimber(climbSubsystem));
         buttonB3.onTrue(new ZeroRightClimber(climbSubsystem));
-        // buttonB4.onTrue(new PivotToPositionPID(pivotSubsystem, 0));
+        buttonB4.onTrue(new PivotToPosition(pivotSubsystem, 0));
         // buttonB5.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
         //buttonB6.onTrue(new PivotToPosition(pivotSubsystem, 0.289));
         // buttonB7.whileTrue(new RightClimberMove(climbSubsystem, 0.5));
@@ -153,8 +155,8 @@ public class RobotContainer {
         buttonB9.whileTrue(new SetPowerLeft(pivotSubsystem, 0.10));
         buttonB10.whileTrue(new SetPowerRight(pivotSubsystem, 0.10));
         // buttonD7.whileTrue(new ManualPivot(pivotSubsystem,() -> debug_secondary.getRawAxis(OIConstants.kDriverYAxis)));
-        buttonD8.whileTrue(new PivotToPosition(pivotSubsystem, 20));
-        buttonD9.whileTrue(new PivotToPosition(pivotSubsystem, -20));
+        // buttonD8.whileTrue(new PivotToPosition(pivotSubsystem, 20));
+        // buttonD9.whileTrue(new PivotToPosition(pivotSubsystem, -20));
     }
 
     public Command getAutonomousCommand() {

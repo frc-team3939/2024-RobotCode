@@ -59,6 +59,11 @@ public class ShooterSubsystem extends SubsystemBase {
     Yshootermotor.set(sspeed);
     Sshootermotor.set(-sspeed);
   }
+
+  public void spinShooterAmp(double sspeed) {
+    Yshootermotor.set(sspeed);
+    Sshootermotor.set(-sspeed + 0.15);
+  }
   
   public void stopShooter() {
     Yshootermotor.set(0);

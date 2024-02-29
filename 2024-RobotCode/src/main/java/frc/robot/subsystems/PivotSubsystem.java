@@ -55,6 +55,12 @@ public class PivotSubsystem extends SubsystemBase {
     resetEncoders();
 
     followermotor.follow(pivotmotor);
+
+    // pivotmotor.configSelectedFeedbackSensor(FeedbackDevice.Analog);
+
+    
+
+    
   }
 
   public void zeroPivotEncoders() {
@@ -85,9 +91,9 @@ public class PivotSubsystem extends SubsystemBase {
   }
 
   public double getABSPivotPositionRad() {
-    double absoluteEncoderOffsetRad = -2.59;
+    double absoluteEncoderOffsetRad = -5.64;
     double angle = absencoder.getAbsolutePosition();
-    angle = angle * 2 * Math.PI;
+    angle = angle * 4 * Math.PI;
     return -(angle + absoluteEncoderOffsetRad);
   }
 
@@ -99,23 +105,24 @@ public class PivotSubsystem extends SubsystemBase {
 
   public void movePivot (double movePosition) {
     position_target = movePosition;
+    pivotmotor.set(ControlMode.Position, movePosition);
   }
 
   
-  // @Override
-  // public void periodic() {
-  //   double ff_val = desired_power;
-  //   double gravity_factor = -0.3*Math.sin(getABSPivotPositionRad());
-  //   ff_val += gravity_factor;
-  //   pivotmotor.set(ControlMode.PercentOutput, ff_val);
-  //   pivotmotor.set(ControlMode.Position,position_target,DemandType.ArbitraryFeedForward,ff_val);
-  //   //followermotor.set(ControlMode.PercentOutput, cmd_val);
-    
-  //   SmartDashboard.putNumber("Pivot/ABS Encoder Position", getABSPivotPositionRad());
-  //   SmartDashboard.putNumber("Pivot/PG Encoder Position", getPGPivotPositionRad());
-  //   // if (Math.abs(getPGPivotPositionRad()) > 0.01 ){ // Prevent divide by zero
-  //   //   SmartDashboard.putNumber("Pivot/ABS-INC Ratio", getABSPivotPositionRad()/getPGPivotPositionRad());
-  //   // }
-  //   SmartDashboard.putNumber("Pivot/Target (encoder counts)", position_target);
-  // }
+  @Override
+  public void periodic() {
+    // double ff_val = desired_power;
+    // double gravity_factor = -0.3*Math.sin(getABSPivotPositionRad());
+    // ff_val += gravity_factor;
+    // pivotmotor.set(ControlMode.PercentOutput, ff_val);
+    // pivotmotor.set(ControlMode.Position,position_target,DemandType.ArbitraryFeedForward,ff_val);
+    // //followermotor.set(ControlMode.PercentOutput, cmd_val);
+    // // if (Math.abs(getPGPivotPositionRad()) > 0.01 ){ // Prevent divide by zero
+    // //   SmartDashboard.putNumber("Pivot/ABS-INC Ratio", getABSPivotPositionRad()/getPGPivotPositionRad());
+    // // }
+    SmartDashboard.putNumber("Pivot/ABS Encoder Position", getABSPivotPositionRad());
+    SmartDashboard.putNumber("Pivot/PG Encoder Position", getPGPivotPositionRad());
+    SmartDashboard.putNumber("Pivot/Target (encoder counts)", position_target);
+  }
+
 }
