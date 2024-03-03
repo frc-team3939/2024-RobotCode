@@ -3,45 +3,51 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.3160154641111295,
-        "y": 5.575737667766062
+        "x": 0.6473384375340175,
+        "y": 6.655908249159857
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.316015464111131,
-        "y": 5.575737667766062
+        "x": 1.5629115970011396,
+        "y": 6.851367687697781
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.43520727141705,
-        "y": 5.575737667766062
+        "x": 3.075150410952451,
+        "y": 6.985103093013204
       },
       "prevControl": {
-        "x": 2.43520727141705,
-        "y": 5.575737667766062
+        "x": 2.075150410952451,
+        "y": 6.985103093013204
       },
       "nextControl": null,
-      "isLocked": false,
+      "isLocked": true,
       "linkedName": null
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    }
+  ],
   "constraintZones": [],
   "eventMarkers": [
     {
       "name": "New Event Marker",
-      "waypointRelativePos": 0.3,
+      "waypointRelativePos": 0.6,
       "command": {
-        "type": "parallel",
+        "type": "sequential",
         "data": {
           "commands": [
             {
               "type": "named",
               "data": {
-                "name": "SpinIntake2"
+                "name": "SpinIntake"
               }
             }
           ]
@@ -61,9 +67,9 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": null,
+  "folder": "Blue Alliance",
   "previewStartingState": {
-    "rotation": 0,
+    "rotation": 60.0,
     "velocity": 0
   },
   "useDefaultConstraints": false

@@ -2,8 +2,13 @@
   "robotWidth": 0.8,
   "robotLength": 0.8,
   "holonomicMode": true,
-  "pathFolders": [],
-  "autoFolders": [],
+  "pathFolders": [
+    "Blue Alliance",
+    "Red Alliance"
+  ],
+  "autoFolders": [
+    "Blue Alliance"
+  ],
   "defaultMaxVel": 4.2,
   "defaultMaxAccel": 3.0,
   "defaultMaxAngVel": 540.0,

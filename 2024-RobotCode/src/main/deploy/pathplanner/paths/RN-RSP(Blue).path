@@ -3,37 +3,43 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.44,
-        "y": 5.575737667766062
+        "x": 2.716336807081197,
+        "y": 4.094921554772019
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.7382756381240285,
-        "y": 5.575737667766062
+        "x": 1.7206825120354532,
+        "y": 4.222997725651026
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.4806128860378027,
-        "y": 5.575737667766062
+        "x": 0.7810738428527275,
+        "y": 4.320682325579921
       },
       "prevControl": {
-        "x": 2.164012652392361,
-        "y": 5.587223378124962
+        "x": 1.892115055934656,
+        "y": 4.187018511111836
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.95,
+      "rotationDegrees": -60.0,
+      "rotateFast": false
+    }
+  ],
   "constraintZones": [],
   "eventMarkers": [
     {
       "name": "New Event Marker",
-      "waypointRelativePos": 0,
+      "waypointRelativePos": 0.55,
       "command": {
         "type": "sequential",
         "data": {
@@ -41,7 +47,7 @@
             {
               "type": "named",
               "data": {
-                "name": "SpinIntake"
+                "name": "SpinIntake2"
               }
             }
           ]
@@ -57,13 +63,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0,
+    "rotation": -60.0,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": null,
+  "folder": "Blue Alliance",
   "previewStartingState": {
-    "rotation": -1.4549259372707722e-13,
+    "rotation": 0.0,
     "velocity": 0
   },
   "useDefaultConstraints": false

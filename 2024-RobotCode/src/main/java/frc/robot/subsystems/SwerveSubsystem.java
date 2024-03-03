@@ -124,6 +124,7 @@ public class SwerveSubsystem extends SubsystemBase {
 
     public void resetHeading() {
         gyro.reset();
+        gyro.setAngleAdjustment(getHeading());
     }
 
     public double getHeading() {

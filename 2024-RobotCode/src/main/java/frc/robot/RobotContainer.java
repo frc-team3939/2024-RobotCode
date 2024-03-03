@@ -19,14 +19,19 @@ import frc.robot.commands.climb.LeftClimberMove;
 import frc.robot.commands.climb.SetPowerLeft;
 import frc.robot.commands.climb.SetPowerRight;
 import frc.robot.commands.climb.RightClimberMove;
+import frc.robot.commands.climb.SafeClimberMove;
+import frc.robot.commands.climb.SafeLeftClimberMove;
+import frc.robot.commands.climb.SafeRightClimberMove;
 import frc.robot.commands.climb.ZeroClimber;
 import frc.robot.commands.climb.ZeroLeftClimber;
 import frc.robot.commands.climb.ZeroRightClimber;
+import frc.robot.commands.intake.Extake;
 import frc.robot.commands.intake.SpinIntake;
 import frc.robot.commands.pivot.ManualPivot;
 import frc.robot.commands.pivot.PivotToPosition;
 import frc.robot.commands.shooter.ShootAmp;
 import frc.robot.commands.shooter.ShootCommand;
+import frc.robot.commands.shooter.ShootTrap;
 import frc.robot.commands.ResyncEncoders;
 import frc.robot.commands.ResetHeading;
 import frc.robot.subsystems.ClimbSubsystem;
@@ -59,6 +64,8 @@ public class RobotContainer {
     Trigger rightShoulder6 = new JoystickButton(driverJoystick, 6);
     Trigger leftTrigger7 = new JoystickButton(driverJoystick, 7);
     Trigger rightTrigger8 = new JoystickButton(driverJoystick, 8);
+    // Trigger leftTrigger7 = new JoystickButton(driverJoystick, 7);
+    // Trigger rightTrigger8 = new JoystickButton(driverJoystick, 8);
     Trigger leftStickPress9 = new JoystickButton(driverJoystick, 9);
     Trigger rightStickPress10 = new JoystickButton(driverJoystick, 10);
     
@@ -122,7 +129,7 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
 
-        X1.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, -0.5));
+        X1.whileTrue(new Extake(intakeSubsystem, shooterSubsystem, -0.5));
         //O2.whileTrue(new ShootCommand(shooterSubsystem)); 
         //Square3.onTrue(new PivotToPositionPID(pivotSubsystem, 0));
         Triangle4.onTrue(new ResetHeading(swerveSubsystem));
@@ -138,18 +145,18 @@ public class RobotContainer {
         buttonT3.whileTrue(new RightClimberMove(climbSubsystem, -0.5));
         buttonT4.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
         buttonT5.onTrue(new ResyncEncoders(swerveSubsystem));
-        buttonT6.whileTrue(new LeftClimberMove(climbSubsystem, 0.5));
-        buttonT7.whileTrue(new ClimberMove(climbSubsystem, 0.5));
-        buttonT8.whileTrue(new RightClimberMove(climbSubsystem, 0.5));
-        buttonT9.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, -0.5));
+        buttonT6.whileTrue(new SafeLeftClimberMove(climbSubsystem, 0.5));
+        buttonT7.whileTrue(new SafeClimberMove(climbSubsystem, 0.5));
+        buttonT8.whileTrue(new SafeRightClimberMove(climbSubsystem, 0.5));
+        buttonT9.whileTrue(new Extake(intakeSubsystem, shooterSubsystem, -0.5));
         buttonT10.onTrue(new ResetHeading(swerveSubsystem));
 
         buttonB1.onTrue(new ZeroLeftClimber(climbSubsystem));
         buttonB2.onTrue(new ZeroClimber(climbSubsystem));
         buttonB3.onTrue(new ZeroRightClimber(climbSubsystem));
-        buttonB4.onTrue(new PivotToPosition(pivotSubsystem, 0));
+        buttonB4.whileTrue(new ShootAmp(shooterSubsystem, 0.26));
         // buttonB5.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
-        //buttonB6.onTrue(new PivotToPosition(pivotSubsystem, 0.289));
+        buttonB6.whileTrue(new ShootTrap(shooterSubsystem, 0.81));
         // buttonB7.whileTrue(new RightClimberMove(climbSubsystem, 0.5));
         // buttonB8.whileTrue(new RightClimberMove(climbSubsystem, -0.5));
         buttonB9.whileTrue(new SetPowerLeft(pivotSubsystem, 0.10));

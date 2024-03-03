@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkBase.SoftLimitDirection;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkPIDController;
@@ -31,9 +32,12 @@ public class ClimbSubsystem extends SubsystemBase {
         //Change ID values when robot is wired
         climbmotorLeft = new CANSparkMax(52, MotorType.kBrushless);
         climbmotorLeft.setIdleMode(IdleMode.kBrake);
+        climbmotorLeft.setInverted(true);
+        climbmotorLeft.setSoftLimit(CANSparkBase.SoftLimitDirection.kReverse, -239);
 
         climbmotorRight = new CANSparkMax(55, MotorType.kBrushless);
         climbmotorRight.setIdleMode(IdleMode.kBrake);
+        climbmotorLeft.setSoftLimit(CANSparkBase.SoftLimitDirection.kReverse, -239);
 
         climbencoderLeft = climbmotorLeft.getEncoder();
         climbencoderRight = climbmotorRight.getEncoder();

@@ -64,6 +64,11 @@ public class ShooterSubsystem extends SubsystemBase {
     Yshootermotor.set(sspeed);
     Sshootermotor.set(-sspeed + 0.15);
   }
+
+  public void spinShooterTrap(double sspeed) {
+    Yshootermotor.set(sspeed);
+    Sshootermotor.set(-sspeed + 0.55);
+  }
   
   public void stopShooter() {
     Yshootermotor.set(0);

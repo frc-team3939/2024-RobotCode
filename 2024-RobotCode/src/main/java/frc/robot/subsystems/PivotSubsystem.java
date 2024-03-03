@@ -91,7 +91,7 @@ public class PivotSubsystem extends SubsystemBase {
   }
 
   public double getABSPivotPositionRad() {
-    double absoluteEncoderOffsetRad = -5.64;
+    double absoluteEncoderOffsetRad = -5.17;
     double angle = absencoder.getAbsolutePosition();
     angle = angle * 4 * Math.PI;
     return -(angle + absoluteEncoderOffsetRad);
@@ -114,12 +114,12 @@ public class PivotSubsystem extends SubsystemBase {
     // double ff_val = desired_power;
     // double gravity_factor = -0.3*Math.sin(getABSPivotPositionRad());
     // ff_val += gravity_factor;
-    // pivotmotor.set(ControlMode.PercentOutput, ff_val);
+    // // pivotmotor.set(ControlMode.PercentOutput, ff_val);
     // pivotmotor.set(ControlMode.Position,position_target,DemandType.ArbitraryFeedForward,ff_val);
-    // //followermotor.set(ControlMode.PercentOutput, cmd_val);
-    // // if (Math.abs(getPGPivotPositionRad()) > 0.01 ){ // Prevent divide by zero
-    // //   SmartDashboard.putNumber("Pivot/ABS-INC Ratio", getABSPivotPositionRad()/getPGPivotPositionRad());
-    // // }
+    //followermotor.set(ControlMode.PercentOutput, cmd_val);
+    // if (Math.abs(getPGPivotPositionRad()) > 0.01 ){ // Prevent divide by zero
+    //   SmartDashboard.putNumber("Pivot/ABS-INC Ratio", getABSPivotPositionRad()/getPGPivotPositionRad());
+    // }
     SmartDashboard.putNumber("Pivot/ABS Encoder Position", getABSPivotPositionRad());
     SmartDashboard.putNumber("Pivot/PG Encoder Position", getPGPivotPositionRad());
     SmartDashboard.putNumber("Pivot/Target (encoder counts)", position_target);

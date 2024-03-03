@@ -6,35 +6,44 @@ package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 
-public class SpinUntilLimitIntake extends Command {
-  /** Creates a new SpinUntilLimitIntake. */
+public class Extake extends Command {
   private final IntakeSubsystem intakeSubsystem;
-  public SpinUntilLimitIntake(IntakeSubsystem intakeSubsystem) {
-    this.intakeSubsystem = intakeSubsystem;
+  private final ShooterSubsystem shooterSubsystem;
+  private double speed;
+  public Extake(IntakeSubsystem isubsystem, ShooterSubsystem ssubsystem, double speed) {
+    intakeSubsystem = isubsystem;
+    shooterSubsystem = ssubsystem;
+    this.speed = speed;
     addRequirements(intakeSubsystem);
+    addRequirements(shooterSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intakeSubsystem.spinIntake(0.5);
+    intakeSubsystem.spinIntake(speed);
+    shooterSubsystem.spinFeeder(speed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    intakeSubsystem.holdIntakePosition();
-    //intakeSubsystem.spinIntake(0);
+    intakeSubsystem.stopIntake();
+    shooterSubsystem.stopFeeder();
+    
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return intakeSubsystem.isIntakeLimitSwitchTripped();
+    return false;
   }
 }
