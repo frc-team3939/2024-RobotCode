@@ -173,6 +173,9 @@ public class SwerveSubsystem extends SubsystemBase {
             }
         );
 
+        // new Rotation2d(radians).getDegrees()
+        // double ang = new Rotation2d(0);
+
         SmartDashboard.putNumber("FL ABS Calculated Radians" , frontLeft.getAbsoluteEncoderRad());
         SmartDashboard.putNumber("FR ABS Calculated Radians" , frontRight.getAbsoluteEncoderRad());
         SmartDashboard.putNumber("BL ABS Calculated Radians" , backLeft.getAbsoluteEncoderRad());

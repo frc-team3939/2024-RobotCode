@@ -32,6 +32,8 @@ import frc.robot.commands.pivot.PivotToPosition;
 import frc.robot.commands.shooter.ShootAmp;
 import frc.robot.commands.shooter.ShootCommand;
 import frc.robot.commands.shooter.ShootTrap;
+import frc.robot.commands.shooter.ShooterBreak;
+import frc.robot.commands.shooter.ShooterCoast;
 import frc.robot.commands.ResyncEncoders;
 import frc.robot.commands.ResetHeading;
 import frc.robot.subsystems.ClimbSubsystem;
@@ -104,8 +106,8 @@ public class RobotContainer {
         
         swerveSubsystem.setDefaultCommand(new SwerveJoystickCmd(
                 swerveSubsystem,
-                () -> driverJoystick.getRawAxis(OIConstants.kDriverYAxis),
-                () -> -driverJoystick.getRawAxis(OIConstants.kDriverXAxis),
+                () -> -driverJoystick.getRawAxis(OIConstants.kDriverYAxis),
+                () -> driverJoystick.getRawAxis(OIConstants.kDriverXAxis),
                 () -> driverJoystick.getRawAxis(OIConstants.kDriverRotAxis),
                 () -> !driverJoystick.getRawButton(OIConstants.kDriverFieldOrientedButtonIdx)));
 
@@ -116,6 +118,8 @@ public class RobotContainer {
         NamedCommands.registerCommand("ShootCommand", new ShootCommand(shooterSubsystem, 1));
         NamedCommands.registerCommand("ResetHeading", new ResetHeading(swerveSubsystem));
         NamedCommands.registerCommand("ResyncEncoders", new ResyncEncoders(swerveSubsystem));
+        NamedCommands.registerCommand("ShooterCoast", new ShooterCoast(shooterSubsystem));
+        NamedCommands.registerCommand("ShooterBrake", new ShooterBreak(shooterSubsystem));
 
         // Build an auto chooser. This will use Commands.none() as the default option.
         autoChooser = AutoBuilder.buildAutoChooser();
@@ -145,15 +149,15 @@ public class RobotContainer {
         buttonT3.whileTrue(new RightClimberMove(climbSubsystem, -0.5));
         buttonT4.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
         buttonT5.onTrue(new ResyncEncoders(swerveSubsystem));
-        buttonT6.whileTrue(new SafeLeftClimberMove(climbSubsystem, 0.5));
-        buttonT7.whileTrue(new SafeClimberMove(climbSubsystem, 0.5));
-        buttonT8.whileTrue(new SafeRightClimberMove(climbSubsystem, 0.5));
+        buttonT6.whileTrue(new LeftClimberMove(climbSubsystem, 0.5));
+        buttonT7.whileTrue(new ClimberMove(climbSubsystem, 0.5));
+        buttonT8.whileTrue(new RightClimberMove(climbSubsystem, 0.5));
         buttonT9.whileTrue(new Extake(intakeSubsystem, shooterSubsystem, -0.5));
         buttonT10.onTrue(new ResetHeading(swerveSubsystem));
 
-        buttonB1.onTrue(new ZeroLeftClimber(climbSubsystem));
-        buttonB2.onTrue(new ZeroClimber(climbSubsystem));
-        buttonB3.onTrue(new ZeroRightClimber(climbSubsystem));
+        buttonB1.whileTrue(new ZeroLeftClimber(climbSubsystem));
+        buttonB2.whileTrue(new ZeroClimber(climbSubsystem));
+        buttonB3.whileTrue(new ZeroRightClimber(climbSubsystem));
         buttonB4.whileTrue(new ShootAmp(shooterSubsystem, 0.26));
         // buttonB5.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
         buttonB6.whileTrue(new ShootTrap(shooterSubsystem, 0.81));

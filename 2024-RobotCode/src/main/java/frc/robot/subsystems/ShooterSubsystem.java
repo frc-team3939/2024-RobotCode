@@ -102,6 +102,16 @@ public class ShooterSubsystem extends SubsystemBase {
   public boolean isBeamBreakTripped() {
     return feeder_beambreak.get();
   }
+
+  public void setShooterBrake() {
+    Yshootermotor.setIdleMode(IdleMode.kBrake);
+    Sshootermotor.setIdleMode(IdleMode.kBrake);
+  }
+
+  public void setShooterCoast() {
+    Yshootermotor.setIdleMode(IdleMode.kCoast);
+    Sshootermotor.setIdleMode(IdleMode.kCoast);
+  }
   
   @Override
   public void periodic() {

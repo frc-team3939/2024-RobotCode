@@ -34,7 +34,7 @@ public class ShootAmp extends Command {
     i = i + 1;
     //ss = 70;//(SmartDashboard.getNumber("Speed", 0)); //Delete when speed is decided on
     shootersubsystem.spinShooterAmp(ss);
-    if(i > 50){
+    if(i > 15){
       shootersubsystem.spinFeeder(1);
     } 
   }

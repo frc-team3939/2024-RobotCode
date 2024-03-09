@@ -39,49 +39,6 @@
                 "data": {
                   "name": "ShootCommand"
                 }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "ShooterBrake"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "MSP-MN"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "MN-MSP"
-          }
-        },
-        {
-          "type": "sequential",
-          "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "ShooterCoast"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "SpinIntake"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "ShootCommand"
-                }
               }
             ]
           }
