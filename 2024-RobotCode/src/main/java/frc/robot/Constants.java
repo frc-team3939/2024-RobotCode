@@ -66,7 +66,7 @@ public final class Constants {
 
         //***** We need to change these numbers once we get swerve up and working *****
         public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = 2.858;
-        public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = 0.815;
+        public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = 1.232;
         public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = -0.413;
         public static final double kBackRightDriveAbsoluteEncoderOffsetRad = -2.787;
 
@@ -112,6 +112,6 @@ public final class Constants {
         }
         public static final int kDriverFieldOrientedButtonIdx = 1;
 
-        public static final double kDeadband = 0.15;
+        public static final double kDeadband = 0.08;
     }
 }

@@ -41,6 +41,10 @@ public class SwerveJoystickCmd extends Command {
         double ySpeed = ySpdFunction.get();
         double turningSpeed = turningSpdFunction.get();
 
+        xSpeed = xSpeed > 0 ? Math.pow(xSpeed , 1.6) : -Math.pow(-xSpeed , 1.6);
+        ySpeed = ySpeed > 0 ? Math.pow(ySpeed , 1.6) : -Math.pow(-ySpeed , 1.6);
+        turningSpeed = turningSpeed > 0 ? Math.pow(turningSpeed , 1.6) : -Math.pow(-turningSpeed , 1.6);
+
         // 2. Apply deadband
         xSpeed = Math.abs(xSpeed) > OIConstants.kDeadband ? xSpeed : 0.0;
         ySpeed = Math.abs(ySpeed) > OIConstants.kDeadband ? ySpeed : 0.0;
