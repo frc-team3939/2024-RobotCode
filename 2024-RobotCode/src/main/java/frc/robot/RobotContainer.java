@@ -1,5 +1,7 @@
 package frc.robot;
 
+import org.photonvision.PhotonCamera;
+
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 
@@ -14,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.SwerveJoystickCmd;
+import frc.robot.commands.SwerveToVision;
 import frc.robot.commands.climb.ClimberMove;
 import frc.robot.commands.climb.LeftClimberMove;
 import frc.robot.commands.climb.RightClimberMove;
@@ -50,6 +53,9 @@ public class RobotContainer {
     // private final Joystick debug_secondary = new Joystick(4);
 
     private final SendableChooser<Command> autoChooser;
+
+    private final PhotonCamera RedvisionCamera = new PhotonCamera("Life_Cam_Red");
+    private final PhotonCamera BluevisionCamera = new PhotonCamera("Life_Cam_Blue");
 
 
     Trigger X1 = new JoystickButton(driverJoystick, 1);
@@ -131,8 +137,8 @@ public class RobotContainer {
         //O2.whileTrue(new ShootCommand(shooterSubsystem)); 
         //Square3.onTrue(new PivotToPositionPID(pivotSubsystem, 0));
         Triangle4.onTrue(new ResetHeading(swerveSubsystem));
-        leftShoulder5.whileTrue(new ShootAmp(shooterSubsystem, 0.26));
-        //rightShoulder6.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, -0.5));
+        leftShoulder5.whileTrue(new SwerveToVision(swerveSubsystem, () -> BluevisionCamera.getLatestResult(), true));
+        rightShoulder6.whileTrue(new ShootAmp(shooterSubsystem, 0.26));
         leftTrigger7.whileTrue(new ShootCommand(shooterSubsystem, 90));
         rightTrigger8.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
         leftStickPress9.onTrue(new ResyncEncoders(swerveSubsystem));
@@ -152,7 +158,7 @@ public class RobotContainer {
         buttonB1.whileTrue(new LeftClimberMove(climbSubsystem, 0.5));
         buttonB2.whileTrue(new ClimberMove(climbSubsystem, 0.5));
         buttonB3.whileTrue(new RightClimberMove(climbSubsystem, 0.5));
-        buttonB4.whileTrue(new ShootAmp(shooterSubsystem, 0.26));
+        buttonB4.whileTrue(new SwerveToVision(swerveSubsystem, () -> BluevisionCamera.getLatestResult(), true));
         // buttonB5.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
         //buttonB6.onTrue(new PivotToggle(pivotSubsystem));
         buttonB6.onTrue(new PivotToggle(pivotSubsystem));
