@@ -60,9 +60,14 @@ public class ShooterSubsystem extends SubsystemBase {
     Sshootermotor.set(-sspeed);
   }
 
-  public void spinShooterAmp(double sspeed) {
+  public void RedspinShooterAmp(double sspeed) {
     Yshootermotor.set(sspeed);
     Sshootermotor.set(-sspeed + 0.15);
+  }
+
+  public void BluespinShooterAmp(double sspeed) {
+    Yshootermotor.set(sspeed - 0.15);
+    Sshootermotor.set(-sspeed);
   }
 
   public void spinShooterTrap(double sspeed) {

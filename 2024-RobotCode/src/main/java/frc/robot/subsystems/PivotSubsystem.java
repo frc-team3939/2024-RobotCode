@@ -25,6 +25,7 @@ public class PivotSubsystem extends SubsystemBase {
   private double desired_power;
   private double position_target;
   private boolean isCoasting;
+  public boolean isRedSide;
 
   public PivotSubsystem() {
     
@@ -42,6 +43,9 @@ public class PivotSubsystem extends SubsystemBase {
 
     desired_power = 0;
     position_target = 0;
+
+    isRedSide = true;
+    isCoasting = true;
 
     // pivotmotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,
     //                                         0,1000);
@@ -80,7 +84,7 @@ public class PivotSubsystem extends SubsystemBase {
   }
 
   public boolean isRedSide() {
-    if (getPGPivotPositionRad() < 0)
+    if (isRedSide = true)
       return true;
     else 
       return false;

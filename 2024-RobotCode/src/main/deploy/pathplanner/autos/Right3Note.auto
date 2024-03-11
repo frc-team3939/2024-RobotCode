@@ -18,16 +18,16 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "ResetHeading"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
                   "name": "ResyncEncoders"
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RSP-Nudge"
           }
         },
         {
@@ -50,6 +50,12 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "Vision"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "RN-RSP(Blue)"
@@ -62,16 +68,34 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "SpinIntake"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
                   "name": "ShootCommand"
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RSP-MID"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Vision"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "MID-RSP"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShootCommand"
           }
         }
       ]

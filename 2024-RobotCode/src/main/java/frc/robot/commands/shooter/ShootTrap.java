@@ -25,7 +25,7 @@ public class ShootTrap extends Command {
   @Override
   public void initialize() {
     i = 0;
-    shootersubsystem.spinShooterAmp(ss);
+    shootersubsystem.spinShooterTrap(ss);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -33,7 +33,7 @@ public class ShootTrap extends Command {
   public void execute() {
     i = i + 1;
     //ss = 70;//(SmartDashboard.getNumber("Speed", 0)); //Delete when speed is decided on
-    shootersubsystem.spinShooterAmp(ss);
+    shootersubsystem.spinShooterTrap(ss);
     if(i > 15){
       shootersubsystem.spinFeeder(1);
     } 

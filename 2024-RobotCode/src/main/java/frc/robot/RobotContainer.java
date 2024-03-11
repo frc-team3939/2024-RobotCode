@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.SwerveJoystickCmd;
 import frc.robot.commands.SwerveToVision;
+import frc.robot.commands.VisionandIntake;
 import frc.robot.commands.climb.ClimberMove;
 import frc.robot.commands.climb.LeftClimberMove;
 import frc.robot.commands.climb.RightClimberMove;
@@ -25,6 +26,8 @@ import frc.robot.commands.climb.ZeroLeftClimber;
 import frc.robot.commands.climb.ZeroRightClimber;
 import frc.robot.commands.intake.Extake;
 import frc.robot.commands.intake.SpinIntake;
+import frc.robot.commands.pivot.PivotBlue;
+import frc.robot.commands.pivot.PivotRed;
 import frc.robot.commands.pivot.PivotToPosition;
 import frc.robot.commands.pivot.PivotToggle;
 import frc.robot.commands.shooter.ShootAmp;
@@ -120,6 +123,7 @@ public class RobotContainer {
         NamedCommands.registerCommand("ResyncEncoders", new ResyncEncoders(swerveSubsystem));
         NamedCommands.registerCommand("ShooterCoast", new ShooterCoast(shooterSubsystem));
         NamedCommands.registerCommand("ShooterBrake", new ShooterBreak(shooterSubsystem));
+        NamedCommands.registerCommand("Vision", new VisionandIntake(swerveSubsystem, intakeSubsystem, shooterSubsystem, () -> BluevisionCamera.getLatestResult(), true));
 
         // Build an auto chooser. This will use Commands.none() as the default option.
         autoChooser = AutoBuilder.buildAutoChooser();
@@ -137,8 +141,8 @@ public class RobotContainer {
         //O2.whileTrue(new ShootCommand(shooterSubsystem)); 
         //Square3.onTrue(new PivotToPositionPID(pivotSubsystem, 0));
         Triangle4.onTrue(new ResetHeading(swerveSubsystem));
-        leftShoulder5.whileTrue(new SwerveToVision(swerveSubsystem, () -> BluevisionCamera.getLatestResult(), true));
-        rightShoulder6.whileTrue(new ShootAmp(shooterSubsystem, 0.26));
+        leftShoulder5.whileTrue(new VisionandIntake(swerveSubsystem, intakeSubsystem, shooterSubsystem, () -> BluevisionCamera.getLatestResult(), true));
+        rightShoulder6.whileTrue(new ShootAmp(shooterSubsystem, pivotSubsystem, 0.26));
         leftTrigger7.whileTrue(new ShootCommand(shooterSubsystem, 90));
         rightTrigger8.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
         leftStickPress9.onTrue(new ResyncEncoders(swerveSubsystem));
@@ -159,11 +163,11 @@ public class RobotContainer {
         buttonB2.whileTrue(new ClimberMove(climbSubsystem, 0.5));
         buttonB3.whileTrue(new RightClimberMove(climbSubsystem, 0.5));
         buttonB4.whileTrue(new SwerveToVision(swerveSubsystem, () -> BluevisionCamera.getLatestResult(), true));
-        // buttonB5.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
+        buttonB5.whileTrue(new VisionandIntake(swerveSubsystem, intakeSubsystem, shooterSubsystem, () -> BluevisionCamera.getLatestResult(), true));
         //buttonB6.onTrue(new PivotToggle(pivotSubsystem));
         buttonB6.onTrue(new PivotToggle(pivotSubsystem));
-        buttonB7.onTrue(new PivotToPosition(pivotSubsystem, 0));
-        buttonB8.onTrue(new PivotToggle(pivotSubsystem));
+        buttonB7.onTrue(new PivotRed(pivotSubsystem));
+        buttonB8.onTrue(new PivotBlue(pivotSubsystem));
         // buttonB8.whileTrue(new RightClimberMove(climbSubsystem, -0.5));
         buttonB9.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
         buttonB10.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, -0.5));
