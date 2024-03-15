@@ -3,11 +3,12 @@
   "robotLength": 0.8,
   "holonomicMode": true,
   "pathFolders": [
-    "Blue Alliance",
-    "Red Alliance"
+    "Amp Side",
+    "Source Side"
   ],
   "autoFolders": [
-    "Blue Alliance"
+    "Amp Side",
+    "Source Side"
   ],
   "defaultMaxVel": 4.2,
   "defaultMaxAccel": 3.0,

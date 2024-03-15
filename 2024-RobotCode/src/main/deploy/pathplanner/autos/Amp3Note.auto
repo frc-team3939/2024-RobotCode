@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.6473384375340175,
-      "y": 6.655908249159857
+      "x": 0.7193498096269378,
+      "y": 4.4544177308906
     },
-    "rotation": 60.0
+    "rotation": -60.0
   },
   "command": {
     "type": "sequential",
@@ -25,6 +25,12 @@
           }
         },
         {
+          "type": "path",
+          "data": {
+            "pathName": "RSP-Nudge"
+          }
+        },
+        {
           "type": "sequential",
           "data": {
             "commands": [
@@ -40,13 +46,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "LSP-LN(Blue)"
+            "pathName": "RSP-RN(Blue)"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Vision"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "LN-LSP(Blue)"
+            "pathName": "RN-RSP(Blue)"
           }
         },
         {
@@ -56,21 +68,39 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "SpinIntake"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
                   "name": "ShootCommand"
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RSP-MID"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Vision"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "MID-RSP"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShootCommand"
           }
         }
       ]
     }
   },
-  "folder": "Blue Alliance",
+  "folder": "Amp Side",
   "choreoAuto": false
 }

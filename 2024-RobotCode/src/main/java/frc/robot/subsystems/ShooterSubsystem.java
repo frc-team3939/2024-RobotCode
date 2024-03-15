@@ -66,6 +66,7 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void BluespinShooterAmp(double sspeed) {
+    sspeed = sspeed + 0.05;
     Yshootermotor.set(sspeed - 0.15);
     Sshootermotor.set(-sspeed);
   }

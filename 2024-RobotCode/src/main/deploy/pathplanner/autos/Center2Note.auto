@@ -56,6 +56,12 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "Vision"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "MN-MSP"

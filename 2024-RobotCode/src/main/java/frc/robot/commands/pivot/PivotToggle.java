@@ -25,9 +25,11 @@ public class PivotToggle extends Command {
     RedState = pivotsubsystem.isRedSide();
     pivotsubsystem.setPivotCoast(false);
     if (pivotsubsystem.isRedSide() == true) {
+      pivotsubsystem.togglePivotState();
       pivotsubsystem.movePivot(0); //Change with testing
     }
     else {
+      pivotsubsystem.togglePivotState();
       pivotsubsystem.movePivot(0); //Change with testing
     }
     
@@ -37,7 +39,7 @@ public class PivotToggle extends Command {
   @Override
   public void execute() {
     i = i + 1;
-    if (i >= 17) {
+    if (i >= 14) {
       if (RedState == true) {
         pivotsubsystem.movePivot(7); //Change with testing
       }
@@ -56,6 +58,7 @@ public class PivotToggle extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    
     if (i >= 35) {
       return true;
       }

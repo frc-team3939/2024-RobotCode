@@ -16,11 +16,11 @@
     },
     {
       "anchor": {
-        "x": 3.43520727141705,
+        "x": 2.4148105168248253,
         "y": 5.575737667766062
       },
       "prevControl": {
-        "x": 2.43520727141705,
+        "x": 1.4148105168248253,
         "y": 5.575737667766062
       },
       "nextControl": null,
@@ -30,25 +30,7 @@
   ],
   "rotationTargets": [],
   "constraintZones": [],
-  "eventMarkers": [
-    {
-      "name": "New Event Marker",
-      "waypointRelativePos": 0.3,
-      "command": {
-        "type": "parallel",
-        "data": {
-          "commands": [
-            {
-              "type": "named",
-              "data": {
-                "name": "SpinIntake2"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 1.6,
     "maxAcceleration": 3.0,
@@ -56,7 +38,7 @@
     "maxAngularAcceleration": 720.0
   },
   "goalEndState": {
-    "velocity": 0,
+    "velocity": 1.0,
     "rotation": 0,
     "rotateFast": false
   },

@@ -6,6 +6,7 @@ package frc.robot.commands.shooter;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.PivotSubsystem;
 
 public class ShootTrap extends Command {
   // Creates a new ShootCommand
@@ -13,8 +14,10 @@ public class ShootTrap extends Command {
   double fs;
   double i;
   private final ShooterSubsystem shootersubsystem;
-  public ShootTrap(ShooterSubsystem subsystem, double ss) {
+  private final PivotSubsystem pivotsubsystem;
+  public ShootTrap(ShooterSubsystem subsystem, PivotSubsystem psubsystem, double ss) {
     shootersubsystem = subsystem;
+    pivotsubsystem = psubsystem;
     this.ss = ss;
     addRequirements(shootersubsystem);
 
@@ -25,7 +28,14 @@ public class ShootTrap extends Command {
   @Override
   public void initialize() {
     i = 0;
-    shootersubsystem.spinShooterTrap(ss);
+    if (pivotsubsystem.isRedSide() == true) {
+      shootersubsystem.RedspinShooterAmp(ss);
+    }
+    else {
+      shootersubsystem.BluespinShooterAmp(ss);
+    }
+
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -34,9 +44,12 @@ public class ShootTrap extends Command {
     i = i + 1;
     //ss = 70;//(SmartDashboard.getNumber("Speed", 0)); //Delete when speed is decided on
     shootersubsystem.spinShooterTrap(ss);
-    if(i > 15){
-      shootersubsystem.spinFeeder(1);
-    } 
+    if (pivotsubsystem.isRedSide() == true) {
+      shootersubsystem.RedspinShooterAmp(ss);
+    }
+    else {
+      shootersubsystem.BluespinShooterAmp(ss);
+    }
   }
 
   // Called once the command ends or is interrupted.

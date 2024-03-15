@@ -84,10 +84,16 @@ public class PivotSubsystem extends SubsystemBase {
   }
 
   public boolean isRedSide() {
-    if (isRedSide = true)
+    if (isRedSide == true) {
       return true;
-    else 
+    }
+    else {
       return false;
+    }
+  }
+
+  public void togglePivotState() {
+    isRedSide = !isRedSide;
   }
 
   public void setPivotCoast(boolean bool) {
@@ -106,7 +112,7 @@ public class PivotSubsystem extends SubsystemBase {
   // }
 
   public double getPGPivotPositionRad() {
-    double angle = pivotmotor.getSelectedSensorPosition() - 940;
+    double angle = pivotmotor.getSelectedSensorPosition() - 2167; //- 940;
     angle = angle / 4096 * 2 * Math.PI;
     return angle;
   }
@@ -126,7 +132,7 @@ public class PivotSubsystem extends SubsystemBase {
       pivotmotor.set(ControlMode.PercentOutput , 0);
     }
     else {
-      pivotmotor.set(ControlMode.Position,position_target / 360 * 4096 + 940);
+      pivotmotor.set(ControlMode.Position,position_target / 360 * 4096 + 2167); //+940
     }
      //,DemandType.ArbitraryFeedForward,ff_val);
     // if (Math.abs(getPGPivotPositionRad()) > 0.01 ){ // Prevent divide by zero
@@ -134,7 +140,8 @@ public class PivotSubsystem extends SubsystemBase {
     // }
     // SmartDashboard.putNumber("Pivot/ABS Encoder Position", getABSPivotPositionRad());
     SmartDashboard.putNumber("Pivot/PG Encoder Position", getPGPivotPositionRad());
-    SmartDashboard.putNumber("PivotMotor Calculation" , position_target / 360 * 4096 + 940);
+    SmartDashboard.putBoolean("Pivot Toggle", isRedSide());
+    SmartDashboard.putNumber("PivotMotor Calculation" , position_target / 360 * 4096 + 2167); //+940
     SmartDashboard.putNumber("Pivot/Target (degrees)", position_target);
   }
 

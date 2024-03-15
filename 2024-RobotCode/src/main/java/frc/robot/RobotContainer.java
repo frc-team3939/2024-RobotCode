@@ -166,11 +166,11 @@ public class RobotContainer {
         buttonB5.whileTrue(new VisionandIntake(swerveSubsystem, intakeSubsystem, shooterSubsystem, () -> BluevisionCamera.getLatestResult(), true));
         //buttonB6.onTrue(new PivotToggle(pivotSubsystem));
         buttonB6.onTrue(new PivotToggle(pivotSubsystem));
-        buttonB7.onTrue(new PivotRed(pivotSubsystem));
-        buttonB8.onTrue(new PivotBlue(pivotSubsystem));
+        buttonB7.onTrue(new PivotBlue(pivotSubsystem));
+        buttonB8.onTrue(new PivotRed(pivotSubsystem));
         // buttonB8.whileTrue(new RightClimberMove(climbSubsystem, -0.5));
         buttonB9.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
-        buttonB10.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, -0.5));
+        buttonB10.whileTrue(new Extake(intakeSubsystem, shooterSubsystem, -0.5));
 
         // buttonD7.whileTrue(new ManualPivot(pivotSubsystem,() -> debug_secondary.getRawAxis(OIConstants.kDriverYAxis)));
         // buttonD8.whileTrue(new PivotToPosition(pivotSubsystem, 20));
