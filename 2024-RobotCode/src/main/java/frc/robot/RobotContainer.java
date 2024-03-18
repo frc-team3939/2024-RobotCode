@@ -25,7 +25,6 @@ import frc.robot.commands.climb.ZeroClimber;
 import frc.robot.commands.climb.ZeroLeftClimber;
 import frc.robot.commands.climb.ZeroRightClimber;
 import frc.robot.commands.intake.Extake;
-import frc.robot.commands.intake.ExtakeAuto;
 import frc.robot.commands.intake.SpinIntake;
 import frc.robot.commands.shooter.ShootAmp;
 import frc.robot.commands.shooter.ShootCommand;

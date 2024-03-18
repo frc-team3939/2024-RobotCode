@@ -25,7 +25,6 @@ public class VisionandIntake extends Command {
     private PIDController xSpdController, ySpdController, turningSpdController;
     private final SlewRateLimiter xLimiter, yLimiter, turningLimiter;
     private double xSpeed, ySpeed;
-    private boolean finishOnTargetLoss;
     private PhotonPipelineResult visionResult;
     private int targetLostCounter;
     private int pickupcounts;
@@ -59,7 +58,6 @@ public class VisionandIntake extends Command {
         this.xLimiter = new SlewRateLimiter(DriveConstants.kTeleDriveMaxAccelerationUnitsPerSecond);
         this.yLimiter = new SlewRateLimiter(DriveConstants.kTeleDriveMaxAccelerationUnitsPerSecond);
         this.turningLimiter = new SlewRateLimiter(DriveConstants.kTeleDriveMaxAngularAccelerationUnitsPerSecond);
-        this.finishOnTargetLoss = finishOnTargetLoss;
 
         targetLostCounter = 0;
         addRequirements(swerveSubsystem);

@@ -7,7 +7,6 @@ package frc.robot.subsystems;
 import com.revrobotics.SparkPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
-import com.revrobotics.CANSparkBase.ControlType;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
@@ -59,17 +58,12 @@ public class IntakeSubsystem extends SubsystemBase {
    * Returns the intake encoder position. The spinning wheels do have a position - the encoder is located inside the NEO.
    * @return The double encoder position.
    */
-  public double getIntakeEncoder() {
-    return intakeCoder.getPosition();
-  }
+  // public double getIntakeEncoder() {
+  //   return intakeCoder.getPosition();
+  // }
 
-  /**
-    * Implementation of a SparkMAX's internal PID controller. This feature is specific to SparkMAXes.
-    * This method sets the reference (or more accurately, setpoint) for the PID to approach. When called, it sets the reference point to the current position)
-    * This is done in the intention to cause it to keep still - as it is trying to approach the point it was called at)
-   */
-  public void holdIntakePosition() {
-    pid.setReference(getIntakeEncoder(), ControlType.kPosition);
+  public double getIntakeSpeed() {
+    return intakeCoder.getVelocity();
   }
 
   /**
@@ -87,6 +81,7 @@ public class IntakeSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putBoolean("Intake Limit Switch", isIntakeLimitSwitchTripped());
-    SmartDashboard.putNumber("IntakeCoder", getIntakeEncoder());
+    SmartDashboard.putNumber("Intake Speed", getIntakeSpeed());
+    // SmartDashboard.putNumber("Intake Encoder", getIntakeEncoder());
   }
 }

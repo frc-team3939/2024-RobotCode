@@ -9,7 +9,6 @@ public final class Constants {
 
     public static final class ModuleConstants {
         
-        //Check AndyMark for specifications on the following 3 variables
         public static final double kWheelDiameterMeters = Units.inchesToMeters(4);
         public static final double kDriveMotorGearRatio = 1 / 6.75;
         public static final double kTurningMotorGearRatio = 1 / 12.8;
@@ -18,6 +17,7 @@ public final class Constants {
         public static final double kDriveEncoderRPM2MeterPerSec = kDriveEncoderRot2Meter / 60;
         public static final double kTurningEncoderRPM2RadPerSec = kTurningEncoderRot2Rad / 60;
         public static final double kPTurning = 0.5;
+    
     }
 
     public static final class DriveConstants {
@@ -52,7 +52,8 @@ public final class Constants {
         public static final boolean kBackLeftDriveEncoderReversed = true;
         public static final boolean kFrontRightDriveEncoderReversed = false;
         public static final boolean kBackRightDriveEncoderReversed = false;
-        //I think we need to use the analog ports on the robo rio for these???
+        
+        //Check Phoenix Tuner X for these values when connected to robot
         public static final int kFrontLeftDriveAbsoluteEncoderPort = 2;
         public static final int kBackLeftDriveAbsoluteEncoderPort = 5;
         public static final int kFrontRightDriveAbsoluteEncoderPort = 3;
@@ -63,16 +64,17 @@ public final class Constants {
         public static final boolean kFrontRightDriveAbsoluteEncoderReversed = true;
         public static final boolean kBackRightDriveAbsoluteEncoderReversed = true;
 
-        //***** We need to change these numbers once we get swerve up and working *****
         public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = -0.184;
         public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = -0.417243;
         public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = -3.322602;
         public static final double kBackRightDriveAbsoluteEncoderOffsetRad = -2.8;
 
-        //Check Andymark for the max speed of the swerve modules IN METERS PER SECOND
+        //Check Andymark/Ryan's math for max speed in METERS PER SECOND
         public static final double kPhysicalMaxSpeedMetersPerSecond = 4.27;
         public static final double kPhysicalMaxAngularSpeedRadiansPerSecond = 2 * 2 * Math.PI;
 
+
+        //Limits tele-op max speed, acceleration, etc.
         public static final double kTeleDriveMaxSpeedMetersPerSecond = kPhysicalMaxSpeedMetersPerSecond / 1;
         public static final double kTeleDriveMaxAngularSpeedRadiansPerSecond = //
                 kPhysicalMaxAngularSpeedRadiansPerSecond / 1;

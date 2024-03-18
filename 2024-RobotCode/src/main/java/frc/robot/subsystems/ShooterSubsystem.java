@@ -16,63 +16,63 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ShooterSubsystem extends SubsystemBase {
 
-  private final CANSparkMax Yshootermotor;
-  private final CANSparkMax Sshootermotor;
+  private final CANSparkMax Rshootermotor;
+  private final CANSparkMax Bshootermotor;
   private final CANSparkMax feedermotor;
   
-  private final RelativeEncoder Yshooterencoder;
-  private final RelativeEncoder Sshooterencoder;
+  private final RelativeEncoder Rshooterencoder;
+  private final RelativeEncoder Bshooterencoder;
   private final RelativeEncoder feederencoder;
 
-  private final SparkPIDController Ypid;
-  private final SparkPIDController Spid;
+  private final SparkPIDController Rpid;
+  private final SparkPIDController Bpid;
 
   private final DigitalInput feeder_beambreak;
 
   public ShooterSubsystem() {
-    Yshootermotor = new CANSparkMax(53, MotorType.kBrushless);
-    Yshootermotor.setIdleMode(IdleMode.kCoast);
+    Rshootermotor = new CANSparkMax(53, MotorType.kBrushless);
+    Rshootermotor.setIdleMode(IdleMode.kCoast);
 
-    Sshootermotor = new CANSparkMax(57, MotorType.kBrushless);
-    Sshootermotor.setIdleMode(IdleMode.kCoast);
+    Bshootermotor = new CANSparkMax(57, MotorType.kBrushless);
+    Bshootermotor.setIdleMode(IdleMode.kCoast);
 
     feedermotor = new CANSparkMax(58, MotorType.kBrushless);
     feedermotor.setIdleMode(IdleMode.kBrake);
     
-    Yshootermotor.enableVoltageCompensation(11.5);
-    Sshootermotor.enableVoltageCompensation(11.5);
+    Rshootermotor.enableVoltageCompensation(11.5);
+    Bshootermotor.enableVoltageCompensation(11.5);
 
-    Yshooterencoder = Yshootermotor.getEncoder();
-    Sshooterencoder = Sshootermotor.getEncoder();
+    Rshooterencoder = Rshootermotor.getEncoder();
+    Bshooterencoder = Bshootermotor.getEncoder();
     feederencoder = feedermotor.getEncoder();
 
-    Ypid = Yshootermotor.getPIDController();
-    Ypid.setP(1);
+    Rpid = Rshootermotor.getPIDController();
+    Rpid.setP(1);
 
-    Spid = Sshootermotor.getPIDController();
-    Spid.setP(1);
+    Bpid = Bshootermotor.getPIDController();
+    Bpid.setP(1);
 
     feeder_beambreak = new DigitalInput(3);
   }
 
   public void spinShooter(double sspeed) {
-    Yshootermotor.set(sspeed);
-    Sshootermotor.set(-sspeed);
+    Rshootermotor.set(sspeed);
+    Bshootermotor.set(-sspeed);
   }
 
   public void spinShooterAmp(double sspeed) {
-    Yshootermotor.set(sspeed);
-    Sshootermotor.set(-sspeed + 0.15);
+    Rshootermotor.set(sspeed);
+    Bshootermotor.set(-sspeed + 0.15);
   }
 
   public void spinShooterTrap(double sspeed) {
-    Yshootermotor.set(sspeed);
-    Sshootermotor.set(-sspeed + 0.55);
+    Rshootermotor.set(sspeed);
+    Bshootermotor.set(-sspeed + 0.55);
   }
   
   public void stopShooter() {
-    Yshootermotor.set(0);
-    Sshootermotor.set(0);
+    Rshootermotor.set(0);
+    Bshootermotor.set(0);
   }
 
   public void spinFeeder(double fspeed) {
@@ -83,18 +83,14 @@ public class ShooterSubsystem extends SubsystemBase {
     feedermotor.set(0);
   }
 
-  public double getYellowShooterEncoder() {
-    return Yshooterencoder.getPosition();
+  public double getRedShooterVelocity() {
+    return Rshooterencoder.getVelocity();
   }
 
-  public double getSilverShooterEncoder() {
-    return Sshooterencoder.getPosition();
+  public double getBlueShooterVelocity() {
+    return Bshooterencoder.getVelocity();
   }
-
-  public double getFeederEncoder() {
-    return feederencoder.getPosition();
-  }
-
+  
   public double getFeederVelocity() {
     return feederencoder.getVelocity();
   }
@@ -104,20 +100,19 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void setShooterBrake() {
-    Yshootermotor.setIdleMode(IdleMode.kBrake);
-    Sshootermotor.setIdleMode(IdleMode.kBrake);
+    Rshootermotor.setIdleMode(IdleMode.kBrake);
+    Bshootermotor.setIdleMode(IdleMode.kBrake);
   }
 
   public void setShooterCoast() {
-    Yshootermotor.setIdleMode(IdleMode.kCoast);
-    Sshootermotor.setIdleMode(IdleMode.kCoast);
+    Rshootermotor.setIdleMode(IdleMode.kCoast);
+    Bshootermotor.setIdleMode(IdleMode.kCoast);
   }
   
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Yellow Shooter Encoder", getYellowShooterEncoder());
-    SmartDashboard.putNumber("Silver Shooter Encoder", getSilverShooterEncoder());
-    SmartDashboard.putNumber("Feeder Encoder", getFeederEncoder());
+    SmartDashboard.putNumber("Red Flywheel Velocity", getRedShooterVelocity());
+    SmartDashboard.putNumber("Blue Flywheel Velocity", getBlueShooterVelocity());
     SmartDashboard.putNumber("Feeder Velocity", getFeederVelocity());
     SmartDashboard.putBoolean("Feeder Beam Break State", feeder_beambreak.get());
   }
