@@ -27,10 +27,6 @@ import frc.robot.commands.climb.ZeroRightClimber;
 import frc.robot.commands.intake.Extake;
 import frc.robot.commands.intake.ExtakeAuto;
 import frc.robot.commands.intake.SpinIntake;
-import frc.robot.commands.pivot.PivotBlue;
-import frc.robot.commands.pivot.PivotRed;
-import frc.robot.commands.pivot.PivotToPosition;
-import frc.robot.commands.pivot.PivotToggle;
 import frc.robot.commands.shooter.ShootAmp;
 import frc.robot.commands.shooter.ShootCommand;
 import frc.robot.commands.shooter.ShooterBreak;
@@ -39,7 +35,6 @@ import frc.robot.commands.ResyncEncoders;
 import frc.robot.commands.ResetHeading;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.subsystems.PivotSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 
@@ -47,7 +42,6 @@ public class RobotContainer {
  
     private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
     private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
-    private final PivotSubsystem pivotSubsystem = new PivotSubsystem();
     private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
     private final ClimbSubsystem climbSubsystem = new ClimbSubsystem();
 
@@ -144,7 +138,7 @@ public class RobotContainer {
         //Square3.onTrue(new PivotToPositionPID(pivotSubsystem, 0));
         Triangle4.onTrue(new ResetHeading(swerveSubsystem));
         leftShoulder5.whileTrue(new VisionandIntake(swerveSubsystem, intakeSubsystem, shooterSubsystem, () -> BluevisionCamera.getLatestResult(), true));
-        rightShoulder6.whileTrue(new ShootAmp(shooterSubsystem, pivotSubsystem, 0.26));
+        rightShoulder6.whileTrue(new ShootAmp(shooterSubsystem, 0.26));
         leftTrigger7.whileTrue(new ShootCommand(shooterSubsystem, 95));
         rightTrigger8.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
         leftStickPress9.onTrue(new ResyncEncoders(swerveSubsystem));
@@ -167,9 +161,9 @@ public class RobotContainer {
         buttonB4.whileTrue(new SwerveToVision(swerveSubsystem, () -> BluevisionCamera.getLatestResult(), true));
         buttonB5.whileTrue(new VisionandIntake(swerveSubsystem, intakeSubsystem, shooterSubsystem, () -> BluevisionCamera.getLatestResult(), true));
         //buttonB6.onTrue(new PivotToggle(pivotSubsystem));
-        buttonB6.onTrue(new PivotToggle(pivotSubsystem));
-        buttonB7.onTrue(new PivotBlue(pivotSubsystem));
-        buttonB8.onTrue(new PivotRed(pivotSubsystem));
+        // buttonB6.onTrue(new));
+        // buttonB7.onTrue(new));
+        // buttonB8.onTrue(new));
         // buttonB8.whileTrue(new RightClimberMove(climbSubsystem, -0.5));
         buttonB9.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
         buttonB10.whileTrue(new Extake(intakeSubsystem, shooterSubsystem, -0.5));
