@@ -25,6 +25,7 @@ import frc.robot.commands.climb.ZeroClimber;
 import frc.robot.commands.climb.ZeroLeftClimber;
 import frc.robot.commands.climb.ZeroRightClimber;
 import frc.robot.commands.intake.Extake;
+import frc.robot.commands.intake.ExtakeAuto;
 import frc.robot.commands.intake.SpinIntake;
 import frc.robot.commands.pivot.PivotBlue;
 import frc.robot.commands.pivot.PivotRed;
@@ -118,6 +119,7 @@ public class RobotContainer {
         
         NamedCommands.registerCommand("SpinIntake", new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
         NamedCommands.registerCommand("SpinIntake2", new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
+        NamedCommands.registerCommand("ExtakeAuto", new Extake(intakeSubsystem, shooterSubsystem, -0.5));
         NamedCommands.registerCommand("ShootCommand", new ShootCommand(shooterSubsystem, 1));
         NamedCommands.registerCommand("ResetHeading", new ResetHeading(swerveSubsystem));
         NamedCommands.registerCommand("ResyncEncoders", new ResyncEncoders(swerveSubsystem));
@@ -143,7 +145,7 @@ public class RobotContainer {
         Triangle4.onTrue(new ResetHeading(swerveSubsystem));
         leftShoulder5.whileTrue(new VisionandIntake(swerveSubsystem, intakeSubsystem, shooterSubsystem, () -> BluevisionCamera.getLatestResult(), true));
         rightShoulder6.whileTrue(new ShootAmp(shooterSubsystem, pivotSubsystem, 0.26));
-        leftTrigger7.whileTrue(new ShootCommand(shooterSubsystem, 90));
+        leftTrigger7.whileTrue(new ShootCommand(shooterSubsystem, 95));
         rightTrigger8.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
         leftStickPress9.onTrue(new ResyncEncoders(swerveSubsystem));
         // rightStickPress10.onTrue(new ResetHeading(swerveSubsystem));

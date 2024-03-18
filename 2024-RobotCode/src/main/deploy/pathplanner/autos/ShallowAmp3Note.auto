@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.3160154641111295,
-      "y": 5.575737667766062
+      "x": 0.7193498096269378,
+      "y": 4.4544177308906
     },
-    "rotation": 0
+    "rotation": -60.0
   },
   "command": {
     "type": "sequential",
@@ -18,16 +18,16 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "ResetHeading"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
                   "name": "ResyncEncoders"
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RSP-Nudge"
           }
         },
         {
@@ -39,12 +39,6 @@
                 "data": {
                   "name": "ShootCommand"
                 }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "ShooterBrake"
-                }
               }
             ]
           }
@@ -52,7 +46,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "MSP-MN"
+            "pathName": "RSP-RN(Blue)"
           }
         },
         {
@@ -64,25 +58,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "MN-MSP"
+            "pathName": "RN-RSP(Blue)"
           }
         },
         {
           "type": "sequential",
           "data": {
             "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "ShooterCoast"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "SpinIntake"
-                }
-              },
               {
                 "type": "named",
                 "data": {
@@ -97,10 +79,40 @@
               }
             ]
           }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RSP-MID"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Vision"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "MID-RSP"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Extake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShootCommand"
+          }
         }
       ]
     }
   },
-  "folder": null,
+  "folder": "Amp Side",
   "choreoAuto": false
 }

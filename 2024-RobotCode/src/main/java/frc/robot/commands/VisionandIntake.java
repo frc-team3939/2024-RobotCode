@@ -114,7 +114,7 @@ public class VisionandIntake extends Command {
                     yaw = target.getYaw();
                     pitch = target.getPitch();
                     skew = target.getSkew();
-                    xSpeed = -xSpdController.calculate(pitch, -37);
+                    xSpeed = -xSpdController.calculate(pitch, -14);
                     ySpeed = -ySpdController.calculate(yaw, 0);
                     skew = turningSpdController.calculate(skew, 0);
                     targetLostCounter = targetLostCounter > 0 ? (targetLostCounter - 1) : 0;

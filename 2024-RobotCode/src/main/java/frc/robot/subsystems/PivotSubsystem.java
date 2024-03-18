@@ -98,6 +98,13 @@ public class PivotSubsystem extends SubsystemBase {
 
   public void setPivotCoast(boolean bool) {
     isCoasting = bool;
+    pivotmotor.setNeutralMode(NeutralMode.Coast);
+    followermotor.setNeutralMode(NeutralMode.Coast);
+  }
+
+  public void setPivotBrake() {
+    pivotmotor.setNeutralMode(NeutralMode.Brake);
+    followermotor.setNeutralMode(NeutralMode.Brake);
   }
 
   // public void resetEncoders() {
@@ -112,7 +119,7 @@ public class PivotSubsystem extends SubsystemBase {
   // }
 
   public double getPGPivotPositionRad() {
-    double angle = pivotmotor.getSelectedSensorPosition() - 2167; //- 940;
+    double angle = pivotmotor.getSelectedSensorPosition() - (2167 - (4096 / 6)); //- 940;
     angle = angle / 4096 * 2 * Math.PI;
     return angle;
   }
@@ -128,12 +135,12 @@ public class PivotSubsystem extends SubsystemBase {
     double gravity_factor = -0.3*Math.sin(getPGPivotPositionRad());
     ff_val += gravity_factor;
     // pivotmotor.set(ControlMode.PercentOutput, ff_val);
-    if (isCoasting == true) {
+    // if (isCoasting == true) {
       pivotmotor.set(ControlMode.PercentOutput , 0);
-    }
-    else {
-      pivotmotor.set(ControlMode.Position,position_target / 360 * 4096 + 2167); //+940
-    }
+    //}
+    // else {
+    //   pivotmotor.set(ControlMode.Position,position_target / 360 * 4096 + (2167 - (4096 / 6))); //+940
+    // }
      //,DemandType.ArbitraryFeedForward,ff_val);
     // if (Math.abs(getPGPivotPositionRad()) > 0.01 ){ // Prevent divide by zero
     //   SmartDashboard.putNumber("Pivot/ABS-INC Ratio", getPGPivotPositionRad()/getPGPivotPositionRad());
@@ -141,7 +148,7 @@ public class PivotSubsystem extends SubsystemBase {
     // SmartDashboard.putNumber("Pivot/ABS Encoder Position", getABSPivotPositionRad());
     SmartDashboard.putNumber("Pivot/PG Encoder Position", getPGPivotPositionRad());
     SmartDashboard.putBoolean("Pivot Toggle", isRedSide());
-    SmartDashboard.putNumber("PivotMotor Calculation" , position_target / 360 * 4096 + 2167); //+940
+    SmartDashboard.putNumber("PivotMotor Calculation" , position_target / 360 * 4096 + (2167 - (4096 / 6))); //+940
     SmartDashboard.putNumber("Pivot/Target (degrees)", position_target);
   }
 

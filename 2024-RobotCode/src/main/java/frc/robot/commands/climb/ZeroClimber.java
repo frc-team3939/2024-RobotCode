@@ -37,6 +37,11 @@ public class ZeroClimber extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return climbSubsystem.isLeftLimitSwitchTripped();
+    if (climbSubsystem.isLeftLimitSwitchTripped() || climbSubsystem.isRightLimitSwitchTripped()) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 }

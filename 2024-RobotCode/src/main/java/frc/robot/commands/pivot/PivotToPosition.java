@@ -20,7 +20,7 @@ public class PivotToPosition extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    pivotsubsystem.setPivotCoast(false);
+    pivotsubsystem.setPivotCoast(true);
     pivotsubsystem.movePivot(targ_position);
   }
 

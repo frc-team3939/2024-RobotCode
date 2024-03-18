@@ -23,7 +23,7 @@ public class PivotBlue extends Command {
   public void initialize() {
     i = 0;
     RedState = pivotsubsystem.isRedSide();
-    pivotsubsystem.setPivotCoast(false);
+    pivotsubsystem.setPivotCoast(true);
     if (pivotsubsystem.isRedSide() == true) {
       pivotsubsystem.movePivot(0); //Change with testing
     }
@@ -44,7 +44,7 @@ public class PivotBlue extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    pivotsubsystem.setPivotCoast(true);
+    pivotsubsystem.setPivotCoast(false);
   }
     
   // Returns true when the command should end.
