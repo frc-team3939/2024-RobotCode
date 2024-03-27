@@ -21,7 +21,6 @@ public class IntakeSubsystem extends SubsystemBase {
   private final SparkPIDController pid;
 
   private final RelativeEncoder intakeCoder;
-  private final DigitalInput intakeLimitSwitch;
 
   public IntakeSubsystem() {
     //Change ID once robot is wired
@@ -35,7 +34,6 @@ public class IntakeSubsystem extends SubsystemBase {
     pid = intakeMotor.getPIDController();
     pid.setP(1);
     // A digital input is the slots 0-9 on the RoboRIO in the "DIO" area. You plug in limit switches into here normally. Essentially, this declaration points to the number 9 slot on the DIO. 
-    intakeLimitSwitch = new DigitalInput(9);
   }
 
   /**
@@ -66,21 +64,22 @@ public class IntakeSubsystem extends SubsystemBase {
     return intakeCoder.getVelocity();
   }
 
+  // public void Rumble() {
+  //   driverJoystick.setRumble
+  // }
+
   /**
    * Returns a boolean on whether the limit switches were tripped in the intake mechanism. Notice how the value is negated - this is a simple code change due to wiring necessities.
    * It is much easier to change code like this than wires.
    * @return Boolean for whether limit is tripped. True is tripped, false is not.
    */
-  public boolean isIntakeLimitSwitchTripped() {
-    return !intakeLimitSwitch.get();
-  }
+  
   
   /**
    * Periodic function standard to all subsystems.
    */
   @Override
   public void periodic() {
-    SmartDashboard.putBoolean("Intake Limit Switch", isIntakeLimitSwitchTripped());
     SmartDashboard.putNumber("Intake Speed", getIntakeSpeed());
     // SmartDashboard.putNumber("Intake Encoder", getIntakeEncoder());
   }

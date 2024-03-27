@@ -23,8 +23,8 @@ public class ZeroClimber extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    climbSubsystem.moveLeftClimber(0.5);
-    climbSubsystem.moveRightClimber(0.5);
+    climbSubsystem.moveLeftClimber(-1);
+    climbSubsystem.moveRightClimber(-1);
   }
 
   // Called once the command ends or is interrupted.

@@ -25,15 +25,15 @@ public class ExtakeAuto extends Command {
   @Override
   public void initialize() {
     i = 0;
-    intakeSubsystem.spinIntake(speed);
-    shooterSubsystem.spinFeeder(speed);
+    intakeSubsystem.spinIntake(-speed);
+    shooterSubsystem.spinFeeder(-speed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intakeSubsystem.spinIntake(speed);
-    shooterSubsystem.spinFeeder(speed);
+    intakeSubsystem.spinIntake(-speed);
+    shooterSubsystem.spinFeeder(-speed);
     i++;
   }
   

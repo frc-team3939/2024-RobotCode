@@ -90,7 +90,7 @@ public class VisionandIntake extends Command {
             break;
             case DRIVE_FORWARD_INTAKE:
             // State transitions
-            if (pickupcounts >= 750 / 20 || !shooterSubsystem.isBeamBreakTripped()) {
+            if (pickupcounts >= 750 / 20 || !shooterSubsystem.isLowerBeamBreakTripped()) {
                 state = State.END;
             }
             break;

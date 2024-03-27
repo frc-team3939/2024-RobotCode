@@ -45,8 +45,8 @@ public class ClimbSubsystem extends SubsystemBase {
         climbmotorRightPID = climbmotorLeft.getPIDController();
 
         //Change channel values when robot is wired
-        limitswitchLeft = new DigitalInput(1);
-        limitswitchRight = new DigitalInput(2);
+        limitswitchLeft = new DigitalInput(0);
+        limitswitchRight = new DigitalInput(1);
 
         climbmotorLeft.setIdleMode(IdleMode.kBrake);
         climbmotorLeft.setSoftLimit(SoftLimitDirection.kForward, 108.5f);

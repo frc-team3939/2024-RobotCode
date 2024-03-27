@@ -14,6 +14,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -28,7 +29,7 @@ public class SwerveSubsystem extends SubsystemBase {
             DriveConstants.kFrontLeftDriveEncoderReversed,
             DriveConstants.kFrontLeftTurningEncoderReversed,
             DriveConstants.kFrontLeftDriveAbsoluteEncoderPort,
-            DriveConstants.kFrontLeftDriveAbsoluteEncoderOffsetRad,
+            "FL-Offset",
             DriveConstants.kFrontLeftDriveAbsoluteEncoderReversed);
 
     private final SwerveModule frontRight = new SwerveModule(
@@ -37,7 +38,7 @@ public class SwerveSubsystem extends SubsystemBase {
             DriveConstants.kFrontRightDriveEncoderReversed,
             DriveConstants.kFrontRightTurningEncoderReversed,
             DriveConstants.kFrontRightDriveAbsoluteEncoderPort,
-            DriveConstants.kFrontRightDriveAbsoluteEncoderOffsetRad,
+            "FR-Offset",
             DriveConstants.kFrontRightDriveAbsoluteEncoderReversed);
 
     private final SwerveModule backLeft = new SwerveModule(
@@ -46,7 +47,7 @@ public class SwerveSubsystem extends SubsystemBase {
             DriveConstants.kBackLeftDriveEncoderReversed,
             DriveConstants.kBackLeftTurningEncoderReversed,
             DriveConstants.kBackLeftDriveAbsoluteEncoderPort,
-            DriveConstants.kBackLeftDriveAbsoluteEncoderOffsetRad,
+            "BL-Offset",
             DriveConstants.kBackLeftDriveAbsoluteEncoderReversed);
 
     private final SwerveModule backRight = new SwerveModule(
@@ -55,7 +56,7 @@ public class SwerveSubsystem extends SubsystemBase {
             DriveConstants.kBackRightDriveEncoderReversed,
             DriveConstants.kBackRightTurningEncoderReversed,
             DriveConstants.kBackRightDriveAbsoluteEncoderPort,
-            DriveConstants.kBackRightDriveAbsoluteEncoderOffsetRad,
+            "BR-Offset",
             DriveConstants.kBackRightDriveAbsoluteEncoderReversed);
 
     private final AHRS gyro = new AHRS(SPI.Port.kMXP);
@@ -123,6 +124,18 @@ public class SwerveSubsystem extends SubsystemBase {
     public void resetHeading() {
         gyro.reset();
         gyro.setAngleAdjustment(getHeading());
+    }
+
+    public void redoOffsets () {
+        Preferences.setDouble("FL-Offset", 0);
+        Preferences.setDouble("BL-Offset", 0);
+        Preferences.setDouble("FR-Offset", 0);
+        Preferences.setDouble("BR-Offset", 0);
+
+        Preferences.setDouble("FL-Offset", Math.IEEEremainder(-frontLeft.getAbsoluteEncoderRad(), 2 * Math.PI));
+        Preferences.setDouble("BL-Offset", Math.IEEEremainder(-backLeft.getAbsoluteEncoderRad(), 2 * Math.PI));
+        Preferences.setDouble("FR-Offset", Math.IEEEremainder(-frontRight.getAbsoluteEncoderRad(), 2 * Math.PI));
+        Preferences.setDouble("BR-Offset", Math.IEEEremainder(-backRight.getAbsoluteEncoderRad(), 2 * Math.PI));
     }
 
     public double getHeading() {

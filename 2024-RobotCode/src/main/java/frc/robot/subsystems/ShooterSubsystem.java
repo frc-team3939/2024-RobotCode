@@ -27,7 +27,9 @@ public class ShooterSubsystem extends SubsystemBase {
   private final SparkPIDController Rpid;
   private final SparkPIDController Bpid;
 
-  private final DigitalInput feeder_beambreak;
+  private final DigitalInput lowerbeambreak;
+  private final DigitalInput upperbeambreak;
+
 
   public ShooterSubsystem() {
     Rshootermotor = new CANSparkMax(53, MotorType.kBrushless);
@@ -52,17 +54,18 @@ public class ShooterSubsystem extends SubsystemBase {
     Bpid = Bshootermotor.getPIDController();
     Bpid.setP(1);
 
-    feeder_beambreak = new DigitalInput(3);
+    lowerbeambreak = new DigitalInput(3);
+    upperbeambreak = new DigitalInput(2);//change
   }
 
   public void spinShooter(double sspeed) {
-    Rshootermotor.set(sspeed);
-    Bshootermotor.set(-sspeed);
+    Rshootermotor.set(-sspeed);
+    Bshootermotor.set(sspeed);
   }
 
   public void spinShooterAmp(double sspeed) {
-    Rshootermotor.set(sspeed);
-    Bshootermotor.set(-sspeed + 0.15);
+    Rshootermotor.set(-sspeed);
+    Bshootermotor.set(sspeed - 0.15);
   }
 
   public void spinShooterTrap(double sspeed) {
@@ -95,8 +98,12 @@ public class ShooterSubsystem extends SubsystemBase {
     return feederencoder.getVelocity();
   }
 
-  public boolean isBeamBreakTripped() {
-    return feeder_beambreak.get();
+  public boolean isLowerBeamBreakTripped() {
+    return lowerbeambreak.get();
+  }
+
+  public boolean isUpperBeamBreakTripped() {
+    return upperbeambreak.get();
   }
 
   public void setShooterBrake() {
@@ -114,6 +121,7 @@ public class ShooterSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Red Flywheel Velocity", getRedShooterVelocity());
     SmartDashboard.putNumber("Blue Flywheel Velocity", getBlueShooterVelocity());
     SmartDashboard.putNumber("Feeder Velocity", getFeederVelocity());
-    SmartDashboard.putBoolean("Feeder Beam Break State", feeder_beambreak.get());
+    SmartDashboard.putBoolean("Lower Beam Break State", !lowerbeambreak.get());
+    SmartDashboard.putBoolean("Upper Beam Break State", !upperbeambreak.get());
   }
 }

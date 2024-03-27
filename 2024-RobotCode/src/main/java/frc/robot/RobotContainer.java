@@ -8,6 +8,7 @@ import com.pathplanner.lib.auto.NamedCommands;
 import edu.wpi.first.wpilibj2.command.Command;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -25,16 +26,19 @@ import frc.robot.commands.climb.ZeroClimber;
 import frc.robot.commands.climb.ZeroLeftClimber;
 import frc.robot.commands.climb.ZeroRightClimber;
 import frc.robot.commands.intake.Extake;
+import frc.robot.commands.intake.NuevoSpinIntake;
 import frc.robot.commands.intake.SpinIntake;
 import frc.robot.commands.shooter.ShootAmp;
 import frc.robot.commands.shooter.ShootCommand;
 import frc.robot.commands.shooter.ShooterBreak;
 import frc.robot.commands.shooter.ShooterCoast;
 import frc.robot.commands.ResyncEncoders;
+import frc.robot.commands.RedoOffsets;
 import frc.robot.commands.ResetHeading;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.SwerveModule;
 import frc.robot.subsystems.SwerveSubsystem;
 
 public class RobotContainer {
@@ -100,7 +104,6 @@ public class RobotContainer {
     // Trigger buttonD9 = new JoystickButton(debug_secondary, 9);
 
     public RobotContainer() {
-        
         swerveSubsystem.setDefaultCommand(new SwerveJoystickCmd(
                 swerveSubsystem,
                 () -> -driverJoystick.getRawAxis(OIConstants.kDriverYAxis),
@@ -110,8 +113,8 @@ public class RobotContainer {
 
         configureButtonBindings();
         
-        NamedCommands.registerCommand("SpinIntake", new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
-        NamedCommands.registerCommand("SpinIntake2", new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
+        NamedCommands.registerCommand("SpinIntake", new SpinIntake(intakeSubsystem, shooterSubsystem, driverJoystick, 0.5));
+        NamedCommands.registerCommand("SpinIntake2", new SpinIntake(intakeSubsystem, shooterSubsystem, driverJoystick, 0.5));
         NamedCommands.registerCommand("ExtakeAuto", new Extake(intakeSubsystem, shooterSubsystem, -0.5));
         NamedCommands.registerCommand("ShootCommand", new ShootCommand(shooterSubsystem, 1));
         NamedCommands.registerCommand("ResetHeading", new ResetHeading(swerveSubsystem));
@@ -137,15 +140,16 @@ public class RobotContainer {
         //Square3.onTrue(new PivotToPositionPID(pivotSubsystem, 0));
         Triangle4.onTrue(new ResetHeading(swerveSubsystem));
         leftShoulder5.whileTrue(new VisionandIntake(swerveSubsystem, intakeSubsystem, shooterSubsystem, () -> BluevisionCamera.getLatestResult(), true));
-        rightShoulder6.whileTrue(new ShootAmp(shooterSubsystem, 0.26));
-        leftTrigger7.whileTrue(new ShootCommand(shooterSubsystem, 95));
-        rightTrigger8.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
+        rightShoulder6.whileTrue(new ShootAmp(shooterSubsystem, 0.29));
+        leftTrigger7.whileTrue(new ShootCommand(shooterSubsystem, 1));
+        rightTrigger8.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, driverJoystick, 0.5));
         leftStickPress9.onTrue(new ResyncEncoders(swerveSubsystem));
         // rightStickPress10.onTrue(new ResetHeading(swerveSubsystem));
 
-        buttonT1.whileTrue(new LeftClimberMove(climbSubsystem, -0.5));
-        buttonT2.whileTrue(new ClimberMove(climbSubsystem, -0.5)); 
-        buttonT3.whileTrue(new RightClimberMove(climbSubsystem, -0.5));
+        buttonT1.whileTrue(new LeftClimberMove(climbSubsystem, 1));
+        buttonT2.whileTrue(new ClimberMove(climbSubsystem, 1)); 
+        buttonT3.whileTrue(new RightClimberMove(climbSubsystem, 1));
+        driverJoystick.setRumble(RumbleType.kBothRumble, 1);
         buttonT4.onTrue(new ResyncEncoders(swerveSubsystem));
         buttonT5.onTrue(new ResetHeading(swerveSubsystem));
         buttonT6.whileTrue(new ZeroLeftClimber(climbSubsystem));
@@ -154,17 +158,17 @@ public class RobotContainer {
         //buttonT9.whileTrue(new Extake(intakeSubsystem, shooterSubsystem, -0.5));
         //buttonT10.onTrue(new ResetHeading(swerveSubsystem));
 
-        buttonB1.whileTrue(new LeftClimberMove(climbSubsystem, 0.5));
-        buttonB2.whileTrue(new ClimberMove(climbSubsystem, 0.5));
-        buttonB3.whileTrue(new RightClimberMove(climbSubsystem, 0.5));
-        buttonB4.whileTrue(new SwerveToVision(swerveSubsystem, () -> BluevisionCamera.getLatestResult(), true));
-        buttonB5.whileTrue(new VisionandIntake(swerveSubsystem, intakeSubsystem, shooterSubsystem, () -> BluevisionCamera.getLatestResult(), true));
-        //buttonB6.onTrue(new PivotToggle(pivotSubsystem));
+        buttonB1.whileTrue(new LeftClimberMove(climbSubsystem, -1));
+        buttonB2.whileTrue(new ClimberMove(climbSubsystem, -1));
+        buttonB3.whileTrue(new RightClimberMove(climbSubsystem, -1));
+        buttonB4.whileTrue(new NuevoSpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
+        buttonB5.whileTrue(new ShootAmp(shooterSubsystem, 0.29));
+        buttonB6.onTrue(new RedoOffsets(swerveSubsystem));
         // buttonB6.onTrue(new));
         // buttonB7.onTrue(new));
         // buttonB8.onTrue(new));
         // buttonB8.whileTrue(new RightClimberMove(climbSubsystem, -0.5));
-        buttonB9.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
+        buttonB9.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, driverJoystick, 0.5));
         buttonB10.whileTrue(new Extake(intakeSubsystem, shooterSubsystem, -0.5));
 
         // buttonD7.whileTrue(new ManualPivot(pivotSubsystem,() -> debug_secondary.getRawAxis(OIConstants.kDriverYAxis)));

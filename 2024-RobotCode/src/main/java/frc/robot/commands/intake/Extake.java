@@ -29,8 +29,8 @@ public class Extake extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intakeSubsystem.spinIntake(speed);
-    shooterSubsystem.spinFeeder(speed);
+    intakeSubsystem.spinIntake(-speed);
+    shooterSubsystem.spinFeeder(-speed);
   }
 
   // Called once the command ends or is interrupted.

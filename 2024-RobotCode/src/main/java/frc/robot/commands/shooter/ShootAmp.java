@@ -36,7 +36,7 @@ public class ShootAmp extends Command {
     shootersubsystem.spinShooterAmp(ss);
 
     if(i > 15){
-      shootersubsystem.spinFeeder(1);
+      shootersubsystem.spinFeeder(-1);
     } 
   }
 
@@ -50,6 +50,6 @@ public class ShootAmp extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return shootersubsystem.isBeamBreakTripped();
+    return shootersubsystem.isLowerBeamBreakTripped();
   }
 }

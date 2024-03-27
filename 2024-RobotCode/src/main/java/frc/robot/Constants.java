@@ -4,13 +4,14 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.Preferences;
 
 public final class Constants {
 
     public static final class ModuleConstants {
         
         public static final double kWheelDiameterMeters = Units.inchesToMeters(4);
-        public static final double kDriveMotorGearRatio = 1 / 6.75;
+        public static final double kDriveMotorGearRatio = 1 / 5.56;
         public static final double kTurningMotorGearRatio = 1 / 12.8;
         public static final double kDriveEncoderRot2Meter = kDriveMotorGearRatio * Math.PI * kWheelDiameterMeters;
         public static final double kTurningEncoderRot2Rad = kTurningMotorGearRatio * 2 * Math.PI;
@@ -24,7 +25,7 @@ public final class Constants {
 
         public static final double kTrackWidth = Units.inchesToMeters(18.5);
         // Distance between the center of the right and left wheels in inches
-        public static final double kWheelBase = Units.inchesToMeters(18.5);
+        public static final double kWheelBase = Units.inchesToMeters(13.125);
         // Distance between the center of the front and back wheels in inches
         public static final SwerveDriveKinematics kDriveKinematics = new SwerveDriveKinematics(
                 new Translation2d(kWheelBase / 2, -kTrackWidth / 2),
@@ -48,15 +49,15 @@ public final class Constants {
         public static final boolean kFrontRightTurningEncoderReversed = true;
         public static final boolean kBackRightTurningEncoderReversed = true;
 
-        public static final boolean kFrontLeftDriveEncoderReversed = false;
+        public static final boolean kFrontLeftDriveEncoderReversed = true;
         public static final boolean kBackLeftDriveEncoderReversed = true;
         public static final boolean kFrontRightDriveEncoderReversed = false;
         public static final boolean kBackRightDriveEncoderReversed = false;
         
         //Check Phoenix Tuner X for these values when connected to robot
-        public static final int kFrontLeftDriveAbsoluteEncoderPort = 2;
+        public static final int kFrontLeftDriveAbsoluteEncoderPort = 3;
         public static final int kBackLeftDriveAbsoluteEncoderPort = 5;
-        public static final int kFrontRightDriveAbsoluteEncoderPort = 3;
+        public static final int kFrontRightDriveAbsoluteEncoderPort = 2;
         public static final int kBackRightDriveAbsoluteEncoderPort = 4;
 
         public static final boolean kFrontLeftDriveAbsoluteEncoderReversed = true;
@@ -64,13 +65,13 @@ public final class Constants {
         public static final boolean kFrontRightDriveAbsoluteEncoderReversed = true;
         public static final boolean kBackRightDriveAbsoluteEncoderReversed = true;
 
-        public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = -0.184;
-        public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = -0.417243;
-        public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = -3.322602;
-        public static final double kBackRightDriveAbsoluteEncoderOffsetRad = -2.8;
+        public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = 0;
+        public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = 0;
+        public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = 0;
+        public static final double kBackRightDriveAbsoluteEncoderOffsetRad = 0;
 
         //Check Andymark/Ryan's math for max speed in METERS PER SECOND
-        public static final double kPhysicalMaxSpeedMetersPerSecond = 4.27;
+        public static final double kPhysicalMaxSpeedMetersPerSecond = 5.121;
         public static final double kPhysicalMaxAngularSpeedRadiansPerSecond = 2 * 2 * Math.PI;
 
 
@@ -115,4 +116,5 @@ public final class Constants {
 
         public static final double kDeadband = 0.08;
     }
+
 }

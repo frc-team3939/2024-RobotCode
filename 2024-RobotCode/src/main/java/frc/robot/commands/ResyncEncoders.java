@@ -19,6 +19,7 @@ public class ResyncEncoders extends Command {
   @Override
   public void initialize() {
     swerveSubsystem.resetEncoders();
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.

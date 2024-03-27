@@ -6,11 +6,13 @@ import com.ctre.phoenix6.hardware.CANcoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Constants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.ModuleConstants;
 
@@ -26,19 +28,25 @@ public class SwerveModule {
 
     private final AnalogInput absoluteEncoder;
     private final boolean absoluteEncoderReversed;
-    private final double absoluteEncoderOffsetRad;
 
     private final CANcoder CANCoder;
 
+    private final String absoluteEncoderKey;
+
 
     public SwerveModule(int driveMotorId, int turningMotorId, boolean driveMotorReversed, boolean turningMotorReversed,
-            int absoluteEncoderId, double absoluteEncoderOffset, boolean absoluteEncoderReversed) {
+            int absoluteEncoderId, String absoluteEncoderKey, boolean absoluteEncoderReversed) {
 
-        this.absoluteEncoderOffsetRad = absoluteEncoderOffset;
+        this.absoluteEncoderKey = absoluteEncoderKey;
         this.absoluteEncoderReversed = absoluteEncoderReversed;
         absoluteEncoder = new AnalogInput(absoluteEncoderId);
         CANCoder = new CANcoder(absoluteEncoderId, "rio");
         var toApply = new CANcoderConfiguration();
+
+        Preferences.initDouble("FL-Offset", Constants.DriveConstants.kFrontLeftDriveAbsoluteEncoderOffsetRad);
+        Preferences.initDouble("FR-Offset", Constants.DriveConstants.kFrontRightDriveAbsoluteEncoderOffsetRad);
+        Preferences.initDouble("BL-Offset", Constants.DriveConstants.kBackLeftDriveAbsoluteEncoderOffsetRad);
+        Preferences.initDouble("BR-Offset", Constants.DriveConstants.kBackRightDriveAbsoluteEncoderOffsetRad);
 
         /* User can change the configs if they want, or leave it empty for factory-default */
         CANCoder.getConfigurator().apply(toApply);
@@ -83,7 +91,7 @@ public class SwerveModule {
         double angle = CANCoder.getPosition().getValue();
         angle = angle * 2 * Math.PI;
         angle *= (absoluteEncoderReversed ? -1.0 : 1.0);
-        return angle + absoluteEncoderOffsetRad;
+        return angle + Preferences.getDouble(absoluteEncoderKey, 0);
     }
 
     public void resetEncoders() {
