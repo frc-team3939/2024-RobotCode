@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.285153447499878,
-        "y": 4.012062159462665
+        "x": 1.4291761916857169,
+        "y": 4.114935548166836
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.7995203910207322,
-        "y": 3.81660272092474
+        "x": 2.55049612856118,
+        "y": 4.1046482092964185
       },
       "prevControl": {
-        "x": 1.0588319923507017,
-        "y": 3.9976598850440808
+        "x": 2.1287152348740794,
+        "y": 4.0943608704260015
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "StageNote"
     }
   ],
   "rotationTargets": [
@@ -43,7 +43,7 @@
   "constraintZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 4.2,
+    "maxVelocity": 5.121,
     "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0
@@ -54,10 +54,10 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "Amp Side",
+  "folder": "Source Side",
   "previewStartingState": {
     "rotation": -60.0,
     "velocity": 0
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }

@@ -11,6 +11,7 @@ import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -23,6 +24,9 @@ public class IntakeSubsystem extends SubsystemBase {
   private final RelativeEncoder intakeCoder;
 
   public IntakeSubsystem() {
+
+    Preferences.initDouble("Intake P", 0.0002);
+
     //Change ID once robot is wired
     intakeMotor = new CANSparkMax(51, MotorType.kBrushless);
     // IdleMode is brake vs coast. Brake stops when it stops recieving power, coast will let it coast.
@@ -33,6 +37,8 @@ public class IntakeSubsystem extends SubsystemBase {
     // A PID controller is a Proportion, Integral, and Derivative controller. It outputs numbers based on the input given, the parameters of the PID, and the "setpoint" or target value.
     pid = intakeMotor.getPIDController();
     pid.setP(1);
+    pid.setP(Preferences.getDouble("Intake P", 0.0002));
+
     // A digital input is the slots 0-9 on the RoboRIO in the "DIO" area. You plug in limit switches into here normally. Essentially, this declaration points to the number 9 slot on the DIO. 
   }
 
@@ -42,7 +48,8 @@ public class IntakeSubsystem extends SubsystemBase {
    */
   public void spinIntake(double speed) {
     // set(speed) is the simple way to set speed for a SparkMAX. It differs slightly from a Talon - see another subsystem for that.
-    intakeMotor.set(speed);
+    pid.setP(Preferences.getDouble("Intake P", 0.0002));
+    pid.setReference(speed * 5676, CANSparkMax.ControlType.kVelocity);
   }
   
   /**

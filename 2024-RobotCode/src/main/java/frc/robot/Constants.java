@@ -28,10 +28,10 @@ public final class Constants {
         public static final double kWheelBase = Units.inchesToMeters(13.125);
         // Distance between the center of the front and back wheels in inches
         public static final SwerveDriveKinematics kDriveKinematics = new SwerveDriveKinematics(
-                new Translation2d(kWheelBase / 2, -kTrackWidth / 2),
-                new Translation2d(kWheelBase / 2, kTrackWidth / 2),
-                new Translation2d(-kWheelBase / 2, -kTrackWidth / 2),
-                new Translation2d(-kWheelBase / 2, kTrackWidth / 2));
+                new Translation2d(kWheelBase / 2, kTrackWidth / 2), //FL
+                new Translation2d(kWheelBase / 2, -kTrackWidth / 2), //FR
+                new Translation2d(-kWheelBase / 2, kTrackWidth / 2), //BL
+                new Translation2d(-kWheelBase / 2, -kTrackWidth / 2)); //BR
 
         //Plug into any SparkMax with a USB-C cable and use the utility on the desktop to check the port IDs of each motor 
         public static final int kFrontLeftDriveMotorPort = 23;   //FL
@@ -44,10 +44,10 @@ public final class Constants {
         public static final int kFrontRightTurningMotorPort = 42;    //FR
         public static final int kBackRightTurningMotorPort = 40;     //BR
 
-        public static final boolean kFrontLeftTurningEncoderReversed = true;
-        public static final boolean kBackLeftTurningEncoderReversed = true;
-        public static final boolean kFrontRightTurningEncoderReversed = true;
-        public static final boolean kBackRightTurningEncoderReversed = true;
+        public static final boolean kFrontLeftTurningEncoderReversed = false;
+        public static final boolean kBackLeftTurningEncoderReversed = false;
+        public static final boolean kFrontRightTurningEncoderReversed = false;
+        public static final boolean kBackRightTurningEncoderReversed = false;
 
         public static final boolean kFrontLeftDriveEncoderReversed = true;
         public static final boolean kBackLeftDriveEncoderReversed = true;
@@ -60,10 +60,10 @@ public final class Constants {
         public static final int kFrontRightDriveAbsoluteEncoderPort = 2;
         public static final int kBackRightDriveAbsoluteEncoderPort = 4;
 
-        public static final boolean kFrontLeftDriveAbsoluteEncoderReversed = true;
-        public static final boolean kBackLeftDriveAbsoluteEncoderReversed = true;
-        public static final boolean kFrontRightDriveAbsoluteEncoderReversed = true;
-        public static final boolean kBackRightDriveAbsoluteEncoderReversed = true;
+        public static final boolean kFrontLeftDriveAbsoluteEncoderReversed = false;
+        public static final boolean kBackLeftDriveAbsoluteEncoderReversed = false;
+        public static final boolean kFrontRightDriveAbsoluteEncoderReversed = false;
+        public static final boolean kBackRightDriveAbsoluteEncoderReversed = false;
 
         public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = 0;
         public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = 0;

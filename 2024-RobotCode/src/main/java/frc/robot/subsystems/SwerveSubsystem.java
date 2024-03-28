@@ -101,7 +101,7 @@ public class SwerveSubsystem extends SubsystemBase {
                 if (alliance.isPresent()) {
                     return alliance.get() != DriverStation.Alliance.Blue;
                 }
-                return false; //Defaults to red
+                return false; //Defaults to blue
                 },
                 this // Reference to this subsystem to set requirements
         );
@@ -139,7 +139,7 @@ public class SwerveSubsystem extends SubsystemBase {
     }
 
     public double getHeading() {
-        return Math.IEEEremainder(gyro.getAngle(), 360);
+        return Math.IEEEremainder(-gyro.getAngle(), 360);
     }
 
     public Rotation2d getRotation2d() {
@@ -196,6 +196,7 @@ public class SwerveSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("FR Turning Position" , frontRight.getTurningPosition());
         SmartDashboard.putNumber("BL Turning Position" , backLeft.getTurningPosition());
         SmartDashboard.putNumber("BR Turning Position" , backRight.getTurningPosition());
+        SmartDashboard.putNumber("GetHeading", getHeading());
         
     }
 

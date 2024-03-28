@@ -4,13 +4,16 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkPIDController;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.revrobotics.CANSparkBase.ControlType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -26,12 +29,19 @@ public class ShooterSubsystem extends SubsystemBase {
 
   private final SparkPIDController Rpid;
   private final SparkPIDController Bpid;
+  private final SparkPIDController Fpid;
 
   private final DigitalInput lowerbeambreak;
   private final DigitalInput upperbeambreak;
-
+  
 
   public ShooterSubsystem() {
+
+    Preferences.initDouble("Feeder P", 0.0002);
+    Preferences.initDouble("Top Shooter P", 0.0002);
+    Preferences.initDouble("Bottom Shooter P", 0.0002);
+
+
     Rshootermotor = new CANSparkMax(53, MotorType.kBrushless);
     Rshootermotor.setIdleMode(IdleMode.kCoast);
 
@@ -49,23 +59,31 @@ public class ShooterSubsystem extends SubsystemBase {
     feederencoder = feedermotor.getEncoder();
 
     Rpid = Rshootermotor.getPIDController();
-    Rpid.setP(1);
+    Rpid.setP(Preferences.getDouble("Bottom Shooter P", 0.0002));
 
     Bpid = Bshootermotor.getPIDController();
-    Bpid.setP(1);
+    Bpid.setP(Preferences.getDouble("Top Shooter P", 0.0002));
+
+    Fpid = feedermotor.getPIDController();
+    Fpid.setP(Preferences.getDouble("Feeder P", 0.0002));
 
     lowerbeambreak = new DigitalInput(3);
     upperbeambreak = new DigitalInput(2);//change
   }
 
   public void spinShooter(double sspeed) {
-    Rshootermotor.set(-sspeed);
-    Bshootermotor.set(sspeed);
+    // Rpid.setReference(sspeed, CANSparkMax.ControlType.kVelocity);
+    Rpid.setP(Preferences.getDouble("Bottom Shooter P", 0.0002));
+    Rpid.setReference(-sspeed * 5676, CANSparkMax.ControlType.kVelocity);
+    Bpid.setP(Preferences.getDouble("Top Shooter P", 0.0002));
+    Bpid.setReference(sspeed * 5676, CANSparkMax.ControlType.kVelocity);
   }
 
   public void spinShooterAmp(double sspeed) {
-    Rshootermotor.set(-sspeed);
-    Bshootermotor.set(sspeed - 0.15);
+    Rpid.setP(Preferences.getDouble("Bottom Shooter P", 0.0002));
+    Rpid.setReference(-sspeed * 5676, CANSparkMax.ControlType.kVelocity);
+    Bpid.setP(Preferences.getDouble("Top Shooter P", 0.0002));
+    Bpid.setReference((sspeed - 0.15) * 5676, CANSparkMax.ControlType.kVelocity);
   }
 
   public void spinShooterTrap(double sspeed) {
@@ -79,7 +97,9 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void spinFeeder(double fspeed) {
-    feedermotor.set(fspeed);
+    Fpid.setP(Preferences.getDouble("Feeder P", 0.0002));
+    Fpid.setReference(fspeed * 5676, CANSparkMax.ControlType.kVelocity);
+    // feedermotor.set(fspeed);
   }
 
   public void stopFeeder() {

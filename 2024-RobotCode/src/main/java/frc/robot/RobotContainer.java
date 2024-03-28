@@ -107,8 +107,8 @@ public class RobotContainer {
         swerveSubsystem.setDefaultCommand(new SwerveJoystickCmd(
                 swerveSubsystem,
                 () -> -driverJoystick.getRawAxis(OIConstants.kDriverYAxis),
-                () -> driverJoystick.getRawAxis(OIConstants.kDriverXAxis),
-                () -> driverJoystick.getRawAxis(OIConstants.kDriverRotAxis),
+                () -> -driverJoystick.getRawAxis(OIConstants.kDriverXAxis),
+                () -> -driverJoystick.getRawAxis(OIConstants.kDriverRotAxis),
                 () -> !driverJoystick.getRawButton(OIConstants.kDriverFieldOrientedButtonIdx)));
 
         configureButtonBindings();
@@ -142,7 +142,7 @@ public class RobotContainer {
         leftShoulder5.whileTrue(new VisionandIntake(swerveSubsystem, intakeSubsystem, shooterSubsystem, () -> BluevisionCamera.getLatestResult(), true));
         rightShoulder6.whileTrue(new ShootAmp(shooterSubsystem, 0.29));
         leftTrigger7.whileTrue(new ShootCommand(shooterSubsystem, 1));
-        rightTrigger8.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, driverJoystick, 0.5));
+        rightTrigger8.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, driverJoystick, 0.75));
         leftStickPress9.onTrue(new ResyncEncoders(swerveSubsystem));
         // rightStickPress10.onTrue(new ResetHeading(swerveSubsystem));
 

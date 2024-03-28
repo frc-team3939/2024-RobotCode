@@ -27,7 +27,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RSP-Nudge"
+            "pathName": "SSP-Nudge"
           }
         },
         {
@@ -46,7 +46,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RSP-RN(Blue)"
+            "pathName": "SSP-SN"
           }
         },
         {
@@ -58,7 +58,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RN-RSP(Blue)"
+            "pathName": "SN-SSP"
           }
         },
         {
@@ -83,7 +83,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RSP-MID"
+            "pathName": "SSP-MID"
           }
         },
         {
@@ -95,7 +95,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "MID-RSP"
+            "pathName": "MID-SSP"
           }
         },
         {
@@ -113,6 +113,6 @@
       ]
     }
   },
-  "folder": "Amp Side",
+  "folder": "OLDAmp Side",
   "choreoAuto": false
 }
