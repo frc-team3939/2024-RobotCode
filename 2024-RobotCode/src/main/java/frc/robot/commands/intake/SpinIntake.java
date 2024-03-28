@@ -4,8 +4,6 @@
 
 package frc.robot.commands.intake;
 
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -13,13 +11,11 @@ import frc.robot.subsystems.ShooterSubsystem;
 public class SpinIntake extends Command {
   private final IntakeSubsystem intakeSubsystem;
   private final ShooterSubsystem shooterSubsystem;
-  private final Joystick driverJoystick;
   
   private double speed;
-  public SpinIntake(IntakeSubsystem isubsystem, ShooterSubsystem ssubsystem, Joystick joystick, double speed) {
+  public SpinIntake(IntakeSubsystem isubsystem, ShooterSubsystem ssubsystem, double speed) {
     intakeSubsystem = isubsystem;
     shooterSubsystem = ssubsystem;
-    driverJoystick = joystick;
     this.speed = speed;
     addRequirements(intakeSubsystem);
     addRequirements(shooterSubsystem);

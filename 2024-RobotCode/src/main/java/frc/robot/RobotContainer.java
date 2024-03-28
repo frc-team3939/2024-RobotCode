@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.SwerveJoystickCmd;
-import frc.robot.commands.SwerveToVision;
 import frc.robot.commands.VisionandIntake;
 import frc.robot.commands.climb.ClimberMove;
 import frc.robot.commands.climb.LeftClimberMove;
@@ -26,7 +25,6 @@ import frc.robot.commands.climb.ZeroClimber;
 import frc.robot.commands.climb.ZeroLeftClimber;
 import frc.robot.commands.climb.ZeroRightClimber;
 import frc.robot.commands.intake.Extake;
-import frc.robot.commands.intake.NuevoSpinIntake;
 import frc.robot.commands.intake.SpinIntake;
 import frc.robot.commands.shooter.ShootAmp;
 import frc.robot.commands.shooter.ShootCommand;
@@ -38,7 +36,6 @@ import frc.robot.commands.ResetHeading;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.subsystems.SwerveModule;
 import frc.robot.subsystems.SwerveSubsystem;
 
 public class RobotContainer {
@@ -55,7 +52,7 @@ public class RobotContainer {
 
     private final SendableChooser<Command> autoChooser;
 
-    private final PhotonCamera RedvisionCamera = new PhotonCamera("Life_Cam_Red");
+    // private final PhotonCamera RedvisionCamera = new PhotonCamera("Life_Cam_Red");
     private final PhotonCamera BluevisionCamera = new PhotonCamera("Life_Cam_Blue");
 
 
@@ -113,8 +110,8 @@ public class RobotContainer {
 
         configureButtonBindings();
         
-        NamedCommands.registerCommand("SpinIntake", new SpinIntake(intakeSubsystem, shooterSubsystem, driverJoystick, 0.5));
-        NamedCommands.registerCommand("SpinIntake2", new SpinIntake(intakeSubsystem, shooterSubsystem, driverJoystick, 0.5));
+        NamedCommands.registerCommand("SpinIntake", new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
+        NamedCommands.registerCommand("SpinIntake2", new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
         NamedCommands.registerCommand("ExtakeAuto", new Extake(intakeSubsystem, shooterSubsystem, -0.5));
         NamedCommands.registerCommand("ShootCommand", new ShootCommand(shooterSubsystem, 1));
         NamedCommands.registerCommand("ResetHeading", new ResetHeading(swerveSubsystem));
@@ -142,7 +139,7 @@ public class RobotContainer {
         leftShoulder5.whileTrue(new VisionandIntake(swerveSubsystem, intakeSubsystem, shooterSubsystem, () -> BluevisionCamera.getLatestResult(), true));
         rightShoulder6.whileTrue(new ShootAmp(shooterSubsystem, 0.29));
         leftTrigger7.whileTrue(new ShootCommand(shooterSubsystem, 1));
-        rightTrigger8.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, driverJoystick, 0.75));
+        rightTrigger8.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.75));
         leftStickPress9.onTrue(new ResyncEncoders(swerveSubsystem));
         // rightStickPress10.onTrue(new ResetHeading(swerveSubsystem));
 
@@ -161,14 +158,14 @@ public class RobotContainer {
         buttonB1.whileTrue(new LeftClimberMove(climbSubsystem, -1));
         buttonB2.whileTrue(new ClimberMove(climbSubsystem, -1));
         buttonB3.whileTrue(new RightClimberMove(climbSubsystem, -1));
-        buttonB4.whileTrue(new NuevoSpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
+        // buttonB4.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
         buttonB5.whileTrue(new ShootAmp(shooterSubsystem, 0.29));
         buttonB6.onTrue(new RedoOffsets(swerveSubsystem));
         // buttonB6.onTrue(new));
         // buttonB7.onTrue(new));
         // buttonB8.onTrue(new));
         // buttonB8.whileTrue(new RightClimberMove(climbSubsystem, -0.5));
-        buttonB9.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, driverJoystick, 0.5));
+        buttonB9.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
         buttonB10.whileTrue(new Extake(intakeSubsystem, shooterSubsystem, -0.5));
 
         // buttonD7.whileTrue(new ManualPivot(pivotSubsystem,() -> debug_secondary.getRawAxis(OIConstants.kDriverYAxis)));
