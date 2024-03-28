@@ -1,15 +1,16 @@
 {
-  "robotWidth": 0.8,
-  "robotLength": 0.8,
+  "robotWidth": 0.81,
+  "robotLength": 0.81,
   "holonomicMode": true,
   "pathFolders": [
-    "Source Side",
-    "Amp Side"
+    "Amp Side",
+    "Middle",
+    "Source Side"
   ],
   "autoFolders": [
-    "OLDAmp Side",
-    "New Folder",
-    "OLDSource Side"
+    "Amp Side",
+    "Middle",
+    "Source Side"
   ],
   "defaultMaxVel": 5.121,
   "defaultMaxAccel": 3.0,

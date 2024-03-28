@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.66,
-      "y": 4.42
+      "x": 0.6452809697599349,
+      "y": 6.69
     },
-    "rotation": -60.0
+    "rotation": 60.0
   },
   "command": {
     "type": "sequential",
@@ -20,13 +20,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Source-CSource"
+            "pathName": "Amp-CAmp"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "CSource-Source"
+            "pathName": "CAmp-Amp"
           }
         },
         {
@@ -44,6 +44,6 @@
       ]
     }
   },
-  "folder": "Source Side",
+  "folder": "Amp Side",
   "choreoAuto": false
 }

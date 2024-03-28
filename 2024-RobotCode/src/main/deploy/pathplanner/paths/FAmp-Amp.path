@@ -3,50 +3,56 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.3160154641111295,
-        "y": 5.575737667766062
+        "x": 8.002785729882236,
+        "y": 7.44597587440789
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.316015464111131,
-        "y": 5.575737667766062
+        "x": 7.146133717576492,
+        "y": 7.408941454467281
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Far Note 1"
     },
     {
       "anchor": {
-        "x": 2.4148105168248253,
-        "y": 5.575737667766062
+        "x": 0.6452809697599349,
+        "y": 6.69
       },
       "prevControl": {
-        "x": 1.4148105168248253,
-        "y": 5.575737667766062
+        "x": 1.793347987694257,
+        "y": 6.946011205298512
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Amp Start"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.7,
+      "rotationDegrees": 60.0,
+      "rotateFast": false
+    }
+  ],
   "constraintZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 1.6,
+    "maxVelocity": 5.121,
     "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0
   },
   "goalEndState": {
-    "velocity": 1.0,
-    "rotation": 0,
+    "velocity": 0.0,
+    "rotation": 60.0,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": null,
+  "folder": "Amp Side",
   "previewStartingState": {
-    "rotation": 0,
+    "rotation": 0.0,
     "velocity": 0
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }

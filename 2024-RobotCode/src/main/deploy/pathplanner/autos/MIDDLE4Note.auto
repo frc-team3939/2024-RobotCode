@@ -1,12 +1,6 @@
 {
   "version": 1.0,
-  "startingPose": {
-    "position": {
-      "x": 0.6452809697599349,
-      "y": 6.69
-    },
-    "rotation": 60.0
-  },
+  "startingPose": null,
   "command": {
     "type": "sequential",
     "data": {
@@ -20,13 +14,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Amp-CAmp"
+            "pathName": "Middle-CMiddle"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "CAmp-Amp"
+            "pathName": "CMiddle-Middle"
           }
         },
         {
@@ -44,13 +38,37 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Amp-FAmp"
+            "pathName": "Middle-CAmp"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "FAmp-Amp"
+            "pathName": "CAmp-Middle"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "SpinIntake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShootCommand"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Middle-CSource"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CSource-Middle"
           }
         },
         {
@@ -68,6 +86,6 @@
       ]
     }
   },
-  "folder": "Amp Side",
+  "folder": "Middle",
   "choreoAuto": false
 }

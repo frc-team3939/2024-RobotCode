@@ -1,0 +1,52 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 8.0,
+        "y": 4.1
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 7.344396042175544,
+        "y": 4.1046482092964185
+      },
+      "isLocked": false,
+      "linkedName": "Far Note 3"
+    },
+    {
+      "anchor": {
+        "x": 1.31,
+        "y": 5.55
+      },
+      "prevControl": {
+        "x": 1.9013272693794896,
+        "y": 5.126041095003615
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "Middle Start"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 5.121,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0.0,
+    "rotation": 0,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": "Middle",
+  "previewStartingState": {
+    "rotation": 0,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
+}

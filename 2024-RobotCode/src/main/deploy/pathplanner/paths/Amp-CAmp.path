@@ -3,35 +3,35 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.6739441950061846,
-        "y": 3.8680394152768263
+        "x": 0.6452809697599349,
+        "y": 6.69
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.7892330521503153,
-        "y": 4.1252228870372525
+        "x": 1.1111820111820547,
+        "y": 6.958988091680788
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Amp Start"
     },
     {
       "anchor": {
-        "x": 1.3983141750744656,
-        "y": 4.526429102983519
+        "x": 2.65,
+        "y": 6.995390431883621
       },
       "prevControl": {
-        "x": 1.922968457465737,
-        "y": 4.1766595813893375
+        "x": 1.9432435927578027,
+        "y": 6.995390431883621
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Amp Note"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.95,
-      "rotationDegrees": -30.0,
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 0,
       "rotateFast": false
     }
   ],
@@ -39,7 +39,7 @@
   "eventMarkers": [
     {
       "name": "New Event Marker",
-      "waypointRelativePos": 0,
+      "waypointRelativePos": 0.7,
       "command": {
         "type": "parallel",
         "data": {
@@ -47,7 +47,7 @@
             {
               "type": "named",
               "data": {
-                "name": "SpinIntake"
+                "name": "SpinIntake2"
               }
             }
           ]
@@ -56,21 +56,21 @@
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 2.1,
+    "maxVelocity": 5.121,
     "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0
   },
   "goalEndState": {
-    "velocity": 0,
-    "rotation": -30.0,
+    "velocity": 0.0,
+    "rotation": 0,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "Source Side",
+  "folder": "Amp Side",
   "previewStartingState": {
-    "rotation": 0.0,
+    "rotation": 60.0,
     "velocity": 0
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }

@@ -40,6 +40,30 @@
           "data": {
             "name": "ShootCommand"
           }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Source-FSource"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "FSource-Source"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "SpinIntake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShootCommand"
+          }
         }
       ]
     }

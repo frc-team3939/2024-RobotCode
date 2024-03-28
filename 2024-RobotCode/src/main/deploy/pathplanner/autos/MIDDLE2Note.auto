@@ -1,12 +1,6 @@
 {
   "version": 1.0,
-  "startingPose": {
-    "position": {
-      "x": 0.66,
-      "y": 4.42
-    },
-    "rotation": -60.0
-  },
+  "startingPose": null,
   "command": {
     "type": "sequential",
     "data": {
@@ -20,13 +14,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Source-CSource"
+            "pathName": "Middle-CMiddle"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "CSource-Source"
+            "pathName": "CMiddle-Middle"
           }
         },
         {
@@ -44,6 +38,6 @@
       ]
     }
   },
-  "folder": "Source Side",
+  "folder": "Middle",
   "choreoAuto": false
 }
