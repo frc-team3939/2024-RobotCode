@@ -3,37 +3,43 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.65,
-        "y": 4.1
+        "x": 0.8427978760719429,
+        "y": 7.077689142846958
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.331727549892758,
-        "y": 4.782537471862513
+        "x": 3.558655337862055,
+        "y": 7.7772281860353205
       },
       "isLocked": false,
-      "linkedName": "Source Note"
+      "linkedName": "Stg2: Amp"
     },
     {
       "anchor": {
-        "x": 1.31,
-        "y": 5.55
+        "x": 8.15,
+        "y": 6.55
       },
       "prevControl": {
-        "x": 2.108140557133245,
-        "y": 5.555162990025228
+        "x": 7.121266112958293,
+        "y": 6.747231222582746
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Middle Start"
+      "linkedName": "Far Note 2"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    }
+  ],
   "constraintZones": [],
   "eventMarkers": [
     {
       "name": "New Event Marker",
-      "waypointRelativePos": 0,
+      "waypointRelativePos": 0.75,
       "command": {
         "type": "parallel",
         "data": {
@@ -61,9 +67,9 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "Middle",
+  "folder": "Amp Side",
   "previewStartingState": {
-    "rotation": 0,
+    "rotation": 60.0,
     "velocity": 0
   },
   "useDefaultConstraints": true

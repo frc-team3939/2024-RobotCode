@@ -3,37 +3,43 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.65,
-        "y": 4.1
+        "x": 8.002785729882236,
+        "y": 6.55
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.331727549892758,
-        "y": 4.782537471862513
+        "x": 7.241522653471373,
+        "y": 8.397572385370335
       },
       "isLocked": false,
-      "linkedName": "Source Note"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.31,
-        "y": 5.55
+        "x": 0.7126459750549824,
+        "y": 6.633578385640183
       },
       "prevControl": {
-        "x": 2.108140557133245,
-        "y": 5.555162990025228
+        "x": 1.7601160536297478,
+        "y": 6.633578385640183
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Middle Start"
+      "linkedName": "Amp Start"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 60.0,
+      "rotateFast": false
+    }
+  ],
   "constraintZones": [],
   "eventMarkers": [
     {
       "name": "New Event Marker",
-      "waypointRelativePos": 0,
+      "waypointRelativePos": 0.0,
       "command": {
         "type": "parallel",
         "data": {
@@ -57,13 +63,13 @@
   },
   "goalEndState": {
     "velocity": 0.0,
-    "rotation": 0,
+    "rotation": 60.0,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "Middle",
+  "folder": "Amp Side",
   "previewStartingState": {
-    "rotation": 0,
+    "rotation": 0.0,
     "velocity": 0
   },
   "useDefaultConstraints": true

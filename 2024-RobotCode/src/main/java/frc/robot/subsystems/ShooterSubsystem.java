@@ -39,6 +39,8 @@ public class ShooterSubsystem extends SubsystemBase {
     Preferences.initDouble("Top Shooter P", 0.0002);
     Preferences.initDouble("Bottom Shooter P", 0.0002);
 
+    Preferences.initDouble("Trap Speed", 0.75);
+
 
     Bshootermotor = new CANSparkMax(53, MotorType.kBrushless);
     Bshootermotor.setIdleMode(IdleMode.kCoast);
@@ -70,23 +72,26 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void spinShooter(double sspeed) {
-    // Bpid.setReference(sspeed, CANSparkMax.ControlType.kVelocity);
-    Bpid.setP(Preferences.getDouble("Bottom Shooter P", 0.0002));
-    Bpid.setReference(-sspeed * 5676, CANSparkMax.ControlType.kVelocity);
-    Tpid.setP(Preferences.getDouble("Top Shooter P", 0.0002));
-    Tpid.setReference(sspeed * 5676, CANSparkMax.ControlType.kVelocity);
+    Bshootermotor.set(-sspeed);
+    Tshootermotor.set(sspeed);
+    // Bpid.setP(Preferences.getDouble("Bottom Shooter P", 0.0002));
+    // Bpid.setReference(-sspeed * 6000, CANSparkMax.ControlType.kVelocity);
+    // Tpid.setP(Preferences.getDouble("Top Shooter P", 0.0002));
+    // Tpid.setReference(sspeed * 6000, CANSparkMax.ControlType.kVelocity);
   }
 
   public void spinShooterAmp(double sspeed) {
-    Bpid.setP(Preferences.getDouble("Bottom Shooter P", 0.0002));
-    Bpid.setReference(-sspeed * 5676, CANSparkMax.ControlType.kVelocity);
-    Tpid.setP(Preferences.getDouble("Top Shooter P", 0.0002));
-    Tpid.setReference((sspeed - 0.15) * 5676, CANSparkMax.ControlType.kVelocity);
+    Bshootermotor.set(-sspeed);
+    Tshootermotor.set(sspeed - 0.15);
+    // Bpid.setP(Preferences.getDouble("Bottom Shooter P", 0.0002));
+    // Bpid.setReference(-sspeed * 5676, CANSparkMax.ControlType.kVelocity);
+    // Tpid.setP(Preferences.getDouble("Top Shooter P", 0.0002));
+    // Tpid.setReference((sspeed - 0.15) * 5676, CANSparkMax.ControlType.kVelocity);
   }
 
   public void spinShooterTrap(double sspeed) {
-    Bshootermotor.set(sspeed);
-    Tshootermotor.set(-sspeed + 0.55);
+    Bshootermotor.set(-sspeed);
+    Tshootermotor.set(sspeed - 0.85);
   }
   
   public void stopShooter() {

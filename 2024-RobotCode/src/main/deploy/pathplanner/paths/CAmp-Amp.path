@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 0.6452809697599349,
-        "y": 6.69
+        "x": 0.7126459750549824,
+        "y": 6.633578385640183
       },
       "prevControl": {
-        "x": 1.793347987694257,
-        "y": 6.946011205298512
+        "x": 1.048544653480285,
+        "y": 7.2628612425144645
       },
       "nextControl": null,
       "isLocked": false,
@@ -36,7 +36,25 @@
     }
   ],
   "constraintZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "New Event Marker",
+      "waypointRelativePos": 0,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "SpinIntake"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 5.121,
     "maxAcceleration": 3.0,

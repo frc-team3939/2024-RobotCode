@@ -28,6 +28,7 @@ import frc.robot.commands.intake.Extake;
 import frc.robot.commands.intake.SpinIntake;
 import frc.robot.commands.shooter.ShootAmp;
 import frc.robot.commands.shooter.ShootCommand;
+import frc.robot.commands.shooter.ShootTrap;
 import frc.robot.commands.shooter.ShooterBreak;
 import frc.robot.commands.shooter.ShooterCoast;
 import frc.robot.commands.ResyncEncoders;
@@ -69,10 +70,10 @@ public class RobotContainer {
     Trigger leftStickPress9 = new JoystickButton(driverJoystick, 9);
     Trigger rightStickPress10 = new JoystickButton(driverJoystick, 10);
     
-    Trigger driverPOVNorth = new POVButton(driverJoystick, 0);
-    Trigger driverPOVSouth = new POVButton(driverJoystick, 180);
-    Trigger driverPOVWest = new POVButton(driverJoystick, 270);
-    Trigger driverPOVEast = new POVButton(driverJoystick, 90);
+    Trigger dPadNorth = new POVButton(driverJoystick, 0);
+    Trigger dPadSouth = new POVButton(driverJoystick, 180);
+    Trigger dPadWest = new POVButton(driverJoystick, 270);
+    Trigger dPadEast = new POVButton(driverJoystick, 90);
 
     Trigger buttonT1 = new JoystickButton(driverstationTop, 1);
     Trigger buttonT2 = new JoystickButton(driverstationTop, 2);
@@ -137,16 +138,16 @@ public class RobotContainer {
         //Square3.onTrue(new PivotToPositionPID(pivotSubsystem, 0));
         Triangle4.onTrue(new ResetHeading(swerveSubsystem));
         leftShoulder5.whileTrue(new VisionandIntake(swerveSubsystem, intakeSubsystem, shooterSubsystem, () -> BluevisionCamera.getLatestResult(), true));
-        rightShoulder6.whileTrue(new ShootAmp(shooterSubsystem, 0.29));
+        rightShoulder6.whileTrue(new ShootAmp(shooterSubsystem, 0.27));
         leftTrigger7.whileTrue(new ShootCommand(shooterSubsystem, 1));
         rightTrigger8.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.75));
         leftStickPress9.onTrue(new ResyncEncoders(swerveSubsystem));
         // rightStickPress10.onTrue(new ResetHeading(swerveSubsystem));
+        dPadNorth.onTrue(new ShootTrap(shooterSubsystem, 1));
 
         buttonT1.whileTrue(new LeftClimberMove(climbSubsystem, 1));
         buttonT2.whileTrue(new ClimberMove(climbSubsystem, 1)); 
         buttonT3.whileTrue(new RightClimberMove(climbSubsystem, 1));
-        driverJoystick.setRumble(RumbleType.kBothRumble, 1);
         buttonT4.onTrue(new ResyncEncoders(swerveSubsystem));
         buttonT5.onTrue(new ResetHeading(swerveSubsystem));
         buttonT6.whileTrue(new ZeroLeftClimber(climbSubsystem));

@@ -3,37 +3,43 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.65,
-        "y": 4.1
+        "x": 0.66,
+        "y": 4.41
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.331727549892758,
-        "y": 4.782537471862513
+        "x": 2.2933126567951376,
+        "y": 1.6871235747447884
       },
       "isLocked": false,
-      "linkedName": "Source Note"
+      "linkedName": "Source Start"
     },
     {
       "anchor": {
-        "x": 1.31,
-        "y": 5.55
+        "x": 8.55,
+        "y": 4.0
       },
       "prevControl": {
-        "x": 2.108140557133245,
-        "y": 5.555162990025228
+        "x": 3.9300000000000015,
+        "y": 4.0
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Middle Start"
+      "linkedName": null
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.3,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    }
+  ],
   "constraintZones": [],
   "eventMarkers": [
     {
       "name": "New Event Marker",
-      "waypointRelativePos": 0,
+      "waypointRelativePos": 0.85,
       "command": {
         "type": "parallel",
         "data": {
@@ -41,7 +47,7 @@
             {
               "type": "named",
               "data": {
-                "name": "SpinIntake2"
+                "name": "SpinIntake"
               }
             }
           ]
@@ -61,9 +67,9 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "Middle",
+  "folder": "Source Side",
   "previewStartingState": {
-    "rotation": 0,
+    "rotation": -60.0,
     "velocity": 0
   },
   "useDefaultConstraints": true

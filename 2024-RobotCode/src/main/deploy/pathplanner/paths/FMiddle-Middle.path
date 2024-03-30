@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 8.0,
-        "y": 4.1
+        "x": 8.55,
+        "y": 4.25
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.344396042175544,
-        "y": 4.1046482092964185
+        "x": 3.5500000000000007,
+        "y": 4.250000000000002
       },
       "isLocked": false,
       "linkedName": "Far Note 3"
@@ -20,8 +20,8 @@
         "y": 5.55
       },
       "prevControl": {
-        "x": 1.9013272693794896,
-        "y": 5.126041095003615
+        "x": 7.3100000000000005,
+        "y": 5.549999999999999
       },
       "nextControl": null,
       "isLocked": false,
@@ -30,7 +30,25 @@
   ],
   "rotationTargets": [],
   "constraintZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "New Event Marker",
+      "waypointRelativePos": 0.0,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "SpinIntake2"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 5.121,
     "maxAcceleration": 3.0,

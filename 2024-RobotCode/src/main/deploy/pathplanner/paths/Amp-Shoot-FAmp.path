@@ -3,37 +3,66 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.65,
-        "y": 4.1
+        "x": 0.7126459750549824,
+        "y": 6.633578385640183
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.331727549892758,
-        "y": 4.782537471862513
+        "x": 0.8633725538127772,
+        "y": 7.468608019922806
       },
       "isLocked": false,
-      "linkedName": "Source Note"
+      "linkedName": "Amp Start"
     },
     {
       "anchor": {
-        "x": 1.31,
-        "y": 5.55
+        "x": 8.002785729882236,
+        "y": 8.4
       },
       "prevControl": {
-        "x": 2.108140557133245,
-        "y": 5.555162990025228
+        "x": 7.296029322640039,
+        "y": 8.4
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Middle Start"
+      "linkedName": "Far Note 1"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.15,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    }
+  ],
   "constraintZones": [],
   "eventMarkers": [
     {
       "name": "New Event Marker",
-      "waypointRelativePos": 0,
+      "waypointRelativePos": 0.25,
+      "command": {
+        "type": "sequential",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "SpinIntake2"
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "ShootCommand"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "New Event Marker",
+      "waypointRelativePos": 0.8,
       "command": {
         "type": "parallel",
         "data": {
@@ -61,9 +90,9 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "Middle",
+  "folder": "Amp Side",
   "previewStartingState": {
-    "rotation": 0,
+    "rotation": 60.0,
     "velocity": 0
   },
   "useDefaultConstraints": true

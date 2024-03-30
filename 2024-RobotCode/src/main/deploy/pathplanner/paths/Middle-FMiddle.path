@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.0123880216525256,
-        "y": 5.159630431906107
+        "x": 5.309999999999999,
+        "y": 5.55
       },
       "isLocked": false,
       "linkedName": "Middle Start"
     },
     {
       "anchor": {
-        "x": 8.0,
-        "y": 4.1
+        "x": 8.55,
+        "y": 4.25
       },
       "prevControl": {
-        "x": 7.293243592757802,
-        "y": 4.1
+        "x": 3.8500000000000005,
+        "y": 4.25
       },
       "nextControl": null,
       "isLocked": false,

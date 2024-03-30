@@ -20,31 +20,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Amp-CAmp"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "CAmp-Amp"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "SpinIntake"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "ShootCommand"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Amp-FAmp"
+            "pathName": "Amp-Shoot-FAmp"
           }
         },
         {
@@ -75,6 +51,18 @@
           "type": "path",
           "data": {
             "pathName": "JAmp-Amp"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "SpinIntake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShootCommand"
           }
         }
       ]

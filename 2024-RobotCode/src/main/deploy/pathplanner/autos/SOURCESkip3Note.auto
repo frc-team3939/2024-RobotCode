@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.31,
-      "y": 5.55
+      "x": 0.66,
+      "y": 4.41
     },
-    "rotation": 0
+    "rotation": -60.0
   },
   "command": {
     "type": "sequential",
@@ -20,13 +20,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Middle-CMiddle"
+            "pathName": "Source-FMiddle"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "CMiddle-Middle"
+            "pathName": "FMiddle-Source"
           }
         },
         {
@@ -44,36 +44,12 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Middle-FMiddle"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "FMiddle-Middle"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "SpinIntake"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "ShootCommand"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Middle-Note4"
+            "pathName": "Source-Note2"
           }
         }
       ]
     }
   },
-  "folder": "Middle",
+  "folder": "Source Side",
   "choreoAuto": false
 }

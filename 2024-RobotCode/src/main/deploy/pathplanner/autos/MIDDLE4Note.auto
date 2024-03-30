@@ -1,6 +1,12 @@
 {
   "version": 1.0,
-  "startingPose": null,
+  "startingPose": {
+    "position": {
+      "x": 1.31,
+      "y": 5.55
+    },
+    "rotation": 0
+  },
   "command": {
     "type": "sequential",
     "data": {
@@ -69,6 +75,30 @@
           "type": "path",
           "data": {
             "pathName": "CSource-Middle"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "SpinIntake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShootCommand"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Middle-FMiddle"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "FMiddle-Middle"
           }
         },
         {

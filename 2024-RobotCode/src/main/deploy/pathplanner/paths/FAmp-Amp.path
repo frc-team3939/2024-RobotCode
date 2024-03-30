@@ -4,28 +4,28 @@
     {
       "anchor": {
         "x": 8.002785729882236,
-        "y": 7.44597587440789
+        "y": 8.4
       },
       "prevControl": null,
       "nextControl": {
         "x": 7.146133717576492,
-        "y": 7.408941454467281
+        "y": 8.362965580059392
       },
       "isLocked": false,
       "linkedName": "Far Note 1"
     },
     {
       "anchor": {
-        "x": 0.6452809697599349,
-        "y": 6.69
+        "x": 0.8427978760719429,
+        "y": 7.077689142846958
       },
       "prevControl": {
-        "x": 1.793347987694257,
-        "y": 6.946011205298512
+        "x": 1.6554976468297504,
+        "y": 7.818377541516988
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Amp Start"
+      "linkedName": "Stg2: Amp"
     }
   ],
   "rotationTargets": [
@@ -36,7 +36,25 @@
     }
   ],
   "constraintZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "New Event Marker",
+      "waypointRelativePos": 0,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "SpinIntake"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 5.121,
     "maxAcceleration": 3.0,
