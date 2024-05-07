@@ -36,9 +36,22 @@
           }
         },
         {
-          "type": "named",
+          "type": "race",
           "data": {
-            "name": "ShootCommand"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "ShootCommand"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 1.0
+                }
+              }
+            ]
           }
         },
         {
@@ -60,9 +73,22 @@
           }
         },
         {
-          "type": "named",
+          "type": "race",
           "data": {
-            "name": "ShootCommand"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "ShootCommand"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 1.0
+                }
+              }
+            ]
           }
         },
         {
@@ -80,37 +106,26 @@
         {
           "type": "named",
           "data": {
-            "name": "SpinIntake"
+            "name": "SpinIntake2"
           }
         },
         {
-          "type": "named",
+          "type": "race",
           "data": {
-            "name": "ShootCommand"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Middle-FMiddle"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "FMiddle-Middle"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "SpinIntake"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "ShootCommand"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "ShootCommand"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 1.0
+                }
+              }
+            ]
           }
         }
       ]

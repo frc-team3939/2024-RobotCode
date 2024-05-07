@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 8.002785729882236,
-        "y": 8.4
+        "x": 8.15,
+        "y": 8.0
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.146133717576492,
-        "y": 8.362965580059392
+        "x": 7.293347987694257,
+        "y": 7.962965580059391
       },
       "isLocked": false,
       "linkedName": "Far Note 1"

@@ -22,30 +22,6 @@
           "data": {
             "pathName": "Source-FMiddle"
           }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "FMiddle-Source"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "SpinIntake"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "ShootCommand"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Source-Note2"
-          }
         }
       ]
     }

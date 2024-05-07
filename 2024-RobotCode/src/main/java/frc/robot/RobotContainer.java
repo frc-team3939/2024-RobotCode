@@ -32,6 +32,7 @@ import frc.robot.commands.shooter.ShootTrap;
 import frc.robot.commands.shooter.ShooterBreak;
 import frc.robot.commands.shooter.ShooterCoast;
 import frc.robot.commands.ResyncEncoders;
+import frc.robot.commands.AmpVision;
 import frc.robot.commands.RedoOffsets;
 import frc.robot.commands.ResetHeading;
 import frc.robot.subsystems.ClimbSubsystem;
@@ -53,7 +54,7 @@ public class RobotContainer {
 
     private final SendableChooser<Command> autoChooser;
 
-    // private final PhotonCamera RedvisionCamera = new PhotonCamera("Life_Cam_Red");
+    private final PhotonCamera RedvisionCamera = new PhotonCamera("Life_Cam_Red");
     private final PhotonCamera BluevisionCamera = new PhotonCamera("Life_Cam_Blue");
 
 
@@ -137,13 +138,13 @@ public class RobotContainer {
         //O2.whileTrue(new ShootCommand(shooterSubsystem)); 
         //Square3.onTrue(new PivotToPositionPID(pivotSubsystem, 0));
         Triangle4.onTrue(new ResetHeading(swerveSubsystem));
-        leftShoulder5.whileTrue(new VisionandIntake(swerveSubsystem, intakeSubsystem, shooterSubsystem, () -> BluevisionCamera.getLatestResult(), true));
+        // leftShoulder5.whileTrue(new VisionandIntake(swerveSubsystem, intakeSubsystem, shooterSubsystem, () -> BluevisionCamera.getLatestResult(), true));
         rightShoulder6.whileTrue(new ShootAmp(shooterSubsystem, 0.27));
         leftTrigger7.whileTrue(new ShootCommand(shooterSubsystem, 1));
-        rightTrigger8.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.75));
+        rightTrigger8.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.80));
         leftStickPress9.onTrue(new ResyncEncoders(swerveSubsystem));
         // rightStickPress10.onTrue(new ResetHeading(swerveSubsystem));
-        dPadNorth.onTrue(new ShootTrap(shooterSubsystem, 1));
+        dPadNorth.whileTrue(new AmpVision(swerveSubsystem, () -> RedvisionCamera.getLatestResult(), true));
 
         buttonT1.whileTrue(new LeftClimberMove(climbSubsystem, 1));
         buttonT2.whileTrue(new ClimberMove(climbSubsystem, 1)); 
@@ -160,7 +161,7 @@ public class RobotContainer {
         buttonB2.whileTrue(new ClimberMove(climbSubsystem, -1));
         buttonB3.whileTrue(new RightClimberMove(climbSubsystem, -1));
         // buttonB4.whileTrue(new SpinIntake(intakeSubsystem, shooterSubsystem, 0.5));
-        buttonB5.whileTrue(new ShootAmp(shooterSubsystem, 0.29));
+        buttonB5.whileTrue(new ShootCommand(shooterSubsystem, 0.27));
         buttonB6.onTrue(new RedoOffsets(swerveSubsystem));
         // buttonB6.onTrue(new));
         // buttonB7.onTrue(new));
