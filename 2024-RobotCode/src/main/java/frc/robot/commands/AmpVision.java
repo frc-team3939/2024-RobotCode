@@ -7,7 +7,6 @@ import org.photonvision.targeting.PhotonTrackedTarget;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.filter.SlewRateLimiter;
-import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -22,7 +21,6 @@ public class AmpVision extends Command {
     private final PIDController xSpdController, ySpdController, turningSpdController;
     private final SlewRateLimiter xLimiter, yLimiter, turningLimiter;
     private double xSpeed, ySpeed;
-    private boolean finishOnTargetLoss;
     private PhotonPipelineResult visionResult;
     private int targetLostCounter;
     /**
@@ -44,7 +42,6 @@ public class AmpVision extends Command {
         this.xLimiter = new SlewRateLimiter(DriveConstants.kTeleDriveMaxAccelerationUnitsPerSecond);
         this.yLimiter = new SlewRateLimiter(DriveConstants.kTeleDriveMaxAccelerationUnitsPerSecond);
         this.turningLimiter = new SlewRateLimiter(DriveConstants.kTeleDriveMaxAngularAccelerationUnitsPerSecond);
-        this.finishOnTargetLoss = finishOnTargetLoss;
 
         targetLostCounter = 0;
         addRequirements(swerveSubsystem);
@@ -59,11 +56,9 @@ public class AmpVision extends Command {
     public void execute() {
         // get vision info
         visionResult = visionInfo.get();
-        Transform3d cameratotag;
         if (visionResult.hasTargets() == true) {
                 PhotonTrackedTarget target = visionResult.getBestTarget();
-                cameratotag = target.getBestCameraToTarget();
-                if (true || target.getFiducialId() == 5 || target.getFiducialId() == 6) {
+                if (target.getFiducialId() == 5 || target.getFiducialId() == 6) {
                     xSpeed = 0;
                     ySpeed = -ySpdController.calculate(target.getYaw(), 0);
                     targetLostCounter = targetLostCounter > 0 ? (targetLostCounter - 1) : 0;

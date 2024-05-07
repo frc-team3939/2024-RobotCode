@@ -8,7 +8,6 @@ import com.pathplanner.lib.auto.NamedCommands;
 import edu.wpi.first.wpilibj2.command.Command;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -28,7 +27,6 @@ import frc.robot.commands.intake.Extake;
 import frc.robot.commands.intake.SpinIntake;
 import frc.robot.commands.shooter.ShootAmp;
 import frc.robot.commands.shooter.ShootCommand;
-import frc.robot.commands.shooter.ShootTrap;
 import frc.robot.commands.shooter.ShooterBreak;
 import frc.robot.commands.shooter.ShooterCoast;
 import frc.robot.commands.ResyncEncoders;
