@@ -64,6 +64,7 @@ public final class Constants {
         public static final boolean kFrontRightDriveAbsoluteEncoderReversed = false;
         public static final boolean kBackRightDriveAbsoluteEncoderReversed = false;
 
+        //You should never have to change these, you should only have to change them with Preferences on the dashboard
         public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = 0;
         public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = 0;
         public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = 0;
@@ -83,6 +84,7 @@ public final class Constants {
     }
 
     public static final class AutoConstants {
+        //If you want to change the max speed of the robot, change the number after the division symbol
         public static final double kMaxSpeedMetersPerSecond = DriveConstants.kPhysicalMaxSpeedMetersPerSecond / 4;
         public static final double kMaxAngularSpeedRadiansPerSecond = //
                 DriveConstants.kPhysicalMaxAngularSpeedRadiansPerSecond / 10;
